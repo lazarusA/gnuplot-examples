@@ -1,0 +1,1 @@
+"plt2_ex6dot1.png"
