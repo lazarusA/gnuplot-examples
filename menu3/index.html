@@ -1,0 +1,169 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
+     
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+  <link rel="stylesheet" href="/css/minimal-mistakes.css">
+  <link rel="stylesheet" href="/css/adjust.css">
+  <!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+  <![endif]-->
+  <!-- start custom head snippets -->
+  <link rel="icon" href="/assets/favicon.png">
+   <title>feature</title>  
+  <!-- insert favicons. use https://realfavicongenerator.net/ -->
+  <!-- end custom head snippets -->
+</head>
+<body class="layout--single">
+  <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">@gp & @gsp</a>
+        <ul class="visible-links">
+         <!-- <li class="masthead__menu-item"><a href="/franklin/" >Franklin</a></li> -->
+          <li class="masthead__menu-item"><a href="/menu1/" >2D plots</a></li>
+          <li class="masthead__menu-item"><a href="/menu2/" >3D plots</a></li>
+          <li class="masthead__menu-item"><a href="/menu3/">Feature</a></li>
+        </ul>
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+  <div class="initial-content">
+    <div id="main" role="main">
+      <div class="sidebar sticky">
+        <div itemscope itemtype="https://schema.org/Person">
+          <!--
+          <div class="author__avatar">
+            <img src="/assets/minimal-mistakes/zenobia.png" alt="Septimia Zenobia" itemprop="image">
+          </div>
+          -->
+          <!--
+          <div class="author__content">
+            <h3 class="author__name" itemprop="name">Lazaro Alonso</h3>
+            <p class="author__bio" itemprop="description">Probably not a commoner.</p>
+          </div>
+          -->
+          <div class="author__urls-wrapper">
+            <button class="btn btn--inverse">Follow</button>
+            <ul class="author__urls social-icons">
+              <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+                <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Tierra</span></li>
+              <li><a href="https://twitter.com/LazarusAlon" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+              <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+<!-- Content appended here -->
+
+<div class="franklin-content">
+<div class="franklin-toc"><ol><li><a href="#first_example">First example</a></li></ol></div> </p>
+<h1 id="first_example"><a href="#first_example">First example</a></h1>  <pre><code class="language-julia">using Gnuplot, ColorSchemes, Colors
+function gp_palette(colormap=:viridis)
+    cmap = get(colorschemes[colormap], LinRange(0,1,256))
+    ctmp = "0 '#$(hex(cmap[1]))',"
+    for i in 2:256; ctmp = ctmp*"$(i-1) '#$(hex(cmap[i]))'," end;
+    "set palette defined("*ctmp[1:end-1]*")"
+end
+
+#first plot
+ψ1 = ψ2 = LinRange(0, 4π, 100)
+function tα_qubit(β, ψ1, ψ2, fα, f)
+    term1 = 2 .+ 2 .*β .- cos.(ψ1) .- cos.(ψ2)
+    term2 = 2*β*cos.(π*fα) .* cos.(2*π*f .+ π*fα .- ψ1 .- ψ2)
+    term1 .- term2
+end
+tα_qubitarr = [tα_qubit(0.61, i, j, 0.2, 0.1) 
+    for i in ψ1, j in ψ2]
+#second plot
+x = y = -15:0.33:15
+fz(x,y) = sin.(sqrt.(x.^2 + y.^2))./sqrt.(x.^2+y.^2)
+fxy = [fz(x,y) for x in x, y in y]
+
+
+@gsp " " :- 
+
+@gsp(ψ1, ψ2, tα_qubitarr, "w pm3d", "set view map", xlabel = "ψ1",
+    ylabel = "ψ2", title = "tunnel α_{q}", 
+    gp_palette(:viridis), "set size square", "set auto fix",:-) 
+@gsp :- "set multiplot layout 1,2 title 'multiplot layout'" :-
+@gsp :- 2 xlab="x" ylab="y" :-
+@gsp(:-, x, y, fxy, "w l lc palette","unset view", "set key off",
+    "set view 65,30",gp_palette(:lajolla),"set size square", 
+    "set auto fix", title = "Mexican hat")</code></pre> <img src="/assets/menu3/code/pltf_ex1.png" alt="">
+<div class="page-foot">
+  <div class="copyright">
+    &copy; Lazaro Alonso. Last modified: March 20, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+  </div>
+</div>
+
+</div>
+<!-- CONTENT ENDS HERE -->
+
+      </div> <!-- closure of main -->
+    </div>   <!-- closure of class initial--content -->
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+        <!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+          <ul class="social-icons">
+             <!--
+            <li><strong>Follow:</strong></li>
+            <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+            -->
+            <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          </ul>
+        </div>
+        <div class="page__footer-copyright">&copy; Lazaro Alonso. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="/libs/minimal-mistakes/main.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+
+    
+        <script src="/libs/katex/katex.min.js"></script>
+<script src="/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+  </body>
+</html>
