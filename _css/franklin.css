@@ -182,14 +182,14 @@ html {
 ================================================================== */
 
 .franklin-content img {
-    width: 70%;
+    width: 80%;
     text-align: center;
     padding-left: 10%; }
 
 .franklin-content .img-small img {
-    width: 50%;
+    width: 70%;
     text-align: center;
-    padding-left: 20%; }
+    padding-left: 10%; }
 
 /* ==================================================================
     KATEX

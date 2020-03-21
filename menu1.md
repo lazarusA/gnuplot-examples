@@ -108,13 +108,12 @@ ecycl_x(r,k,θ) = r*(k .+ 1).*cos.(θ) .- r*cos.((k .+ 1) .* θ)
 ecycl_y(r,k,θ) = r*(k .+ 1).*sin.(θ) .- r*sin.((k .+ 1) .* θ)
 θ = LinRange(0,6.2π,1000)
 @gp(ecycl_x(1,1,θ), ecycl_y(1,1,θ), "w l lw 2 t '1'",
-    "set size square")
+    "set size square", title = "Epicycloid",
+    "set key outside title 'k, r=2k' box opaque",
+    xlabel = "x(θ) = r(k+1)cos(θ) -rcos((k+1)θ)", 
+    ylabel = "y(θ) = r(k+1)cos(θ) -rcos((k+1)θ) ")
 for k in 2:0.5:5.
-    @gp(:-, ecycl_x(2k,k,θ), ecycl_y(2k,k,θ), "w l lw 2 t '$(k)' ", 
-        "set key outside title 'k, r=2k' box opaque",
-        xlabel = "x(θ) = r(k+1)cos(θ) -rcos((k+1)θ)", 
-        ylabel = "y(θ) = r(k+1)cos(θ) -rcos((k+1)θ) ",
-        title = "Epicycloid",:-)
+    @gp(:-, ecycl_x(2k,k,θ), ecycl_y(2k,k,θ), "w l lw 2 t '$(k)'", :-)
 end
 @gp
 save(term="pngcairo font 'Consolas, 12' size 600,600", output="plt2_ex6dot1.png") # hide
@@ -266,8 +265,74 @@ save(term="pngcairo size 900,800", output="plt_ex12.png") # hide
 ```
 \fig{plt_ex12}
 
-to be continued... 
+## Filled curves 
+```julia:./ex13.jl
+using Gnuplot
+x = LinRange(-10,10,200)
+fg(x,μ,σ) = exp.(.-(x.-μ).^2 ./(2σ^2))./(σ*√(2π))
+@gp(x, fg(x, 0.25, 1.5), "w filledcurves lc '#E69F00' dt 1 t '0.25,1.5'", 
+    "set style fill transparent solid 0.3 noborder", 
+    "set key title 'μ,σ' box 3", xlab = "x", ylab = "P(x)")
+@gp(:-, x, fg(x, 2, 1), "w filledcu lc '#56B4E9' dt 1 t '2,1'")
+@gp(:-, x, fg(x, -1, 2), "w filledcu lc '#009E73' dt 1 t '-1,2'")
+save(term="pngcairo size 600,400", output="plt_ex13.png") # hide
+```
+\fig{plt_ex13}
 
+With different transparencies 
 
+```julia:./ex14.jl
+using Gnuplot
+x = LinRange(-10,10,200)
+fg(x,μ,σ) = exp.(.-(x.-μ).^2 ./(2σ^2))./(σ*√(2π))
+@gp(x, fg(x, 0.25, 1.5), "w filledcurves lc '#E69F00' t '0.25,1.5'", 
+    "set style fill transparent solid 0.5 noborder", 
+    "set key title 'μ,σ' box 3", xlab = "x", ylab = "P(x)")
+@gp(:-, x, fg(x, 2, 1), 
+    "w filledcu lc rgb '#56B4E9' t '2,1' fs transparent solid 0.25")
+@gp(:-, x, fg(x, -1, 2), 
+    "w filledcu lc '#009E73' t '-1,2' fs transparent solid 0.1")
+save(term="pngcairo size 600,400", output="plt_ex14.png") # hide
+```
+\fig{plt_ex14}
 
+Filling between lines, two examples in one plot. The first entry is the common `x` variable, the second argument is the first curve and the third the second curve
 
+```julia:./ex15.jl
+using Gnuplot
+x = LinRange(-10,10,200)
+@gp(x, sin.(x), sin.(x) .+ 1, 
+    "with filledcu lc '#56B4E9' fs transparent solid 0.3" )
+@gp(:-,x, cos.(x), 1 .+ cos.(x), 
+    "with filledcu lc 'red' fs transparent solid 0.5")
+save(term="pngcairo size 600,400", output="plt_ex15.png") # hide
+```
+\fig{plt_ex15}
+
+### Histograms 
+Three different ways two plot histograms. 
+```julia:./ex16.jl
+using Distributions, StatsBase, LinearAlgebra, Random
+Random.seed!(123)
+function histVals(μ,σ; npts=1000, izq = -8, der = 6, paso = 0.15)
+    dist = rand(Normal(μ,σ), npts)
+    h = fit(Histogram, dist, izq:paso:der) #nbins = 50
+    h = normalize(h)
+    edg = collect(h.edges[1])
+    centros = (edg[2:end] .+ edg[1:end-1])/2
+    centros, h.weights
+end
+@gp(histVals(0.25,0.5)..., "w boxes t '0.25,0.5' lc '#E69F00'",
+    "set key title 'μ,σ' box 3",
+    "set style fill transparent solid 0.45 noborder",
+    xlab = "x", ylab = "P(x)")
+@gp(:-, histVals(-1,2)..., "w histeps t '-1,2' lc 'black'",
+    xlab = "x", ylab = "P(x)")
+@gp(:-, histVals(2,1)..., 
+    "w fillsteps t '2,1' lc '#009E73' fs transparent solid 0.2 noborder", 
+    xlab = "x", ylab = "P(x)")
+save(term="pngcairo size 600,400", output="plt_ex16.png") # hide
+```
+\fig{plt_ex16}
+
+more soon... 
