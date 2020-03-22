@@ -1,4 +1,4 @@
-<!doctype html> <!-- Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes Free for personal and commercial use under the MIT license https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE --> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/gnuplot-examples/libs/katex/katex.min.css"> <link rel=stylesheet  href="/gnuplot-examples/libs/highlight/github.min.css"> <link rel=stylesheet  href="/gnuplot-examples/css/franklin.css"> <link rel=stylesheet  href="/gnuplot-examples/css/minimal-mistakes.css"> <link rel=stylesheet  href="/gnuplot-examples/css/adjust.css"> <!--[if IE ]> <style> /* old IE unsupported flexbox fixes */ .greedy-nav .site-title { padding-right: 3em; } .greedy-nav button { position: absolute; top: 0; right: 0; height: 100%; } </style> <![endif]--> <link rel=icon  href="/gnuplot-examples/assets/favicon.png"> <title>Code blocks</title> <body class=layout--single > <div class=masthead > <div class=masthead__inner-wrap > <div class=masthead__menu > <nav id=site-nav  class=greedy-nav > <a class=site-title  href="/gnuplot-examples/">@gp & @gsp</a> <ul class=visible-links > <li class=masthead__menu-item ><a href="/gnuplot-examples/menu1/" >2D plots</a> <li class=masthead__menu-item ><a href="/gnuplot-examples/menu2/" >3D plots</a> <li class=masthead__menu-item ><a href="/gnuplot-examples/menu3/">Feature</a> </ul> <button class="greedy-nav__toggle hidden" type=button > <span class=visually-hidden >Toggle menu</span> <div class=navicon ></div> </button> <ul class="hidden-links hidden"></ul> </nav> </div> </div> </div> <div class=initial-content > <div id=main  role=main > <div class="sidebar sticky"> <div itemscope itemtype="https://schema.org/Person"> <!-- <div class=author__avatar > <img src="/gnuplot-examples/assets/minimal-mistakes/zenobia.png" alt="Septimia Zenobia" itemprop=image > </div> --> <!-- <div class=author__content > <h3 class=author__name  itemprop=name >Lazaro Alonso</h3> <p class=author__bio  itemprop=description >Probably not a commoner.</p> </div> --> <div class=author__urls-wrapper > <button class="btn btn--inverse">Follow</button> <ul class="author__urls social-icons"> <li itemprop=homeLocation  itemscope itemtype="https://schema.org/Place"> <i class="fas fa-fw fa-map-marker-alt" aria-hidden=true ></i> <span itemprop=name >Tierra</span> <li><a href="https://twitter.com/LazarusAlon" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> </ul> </div> </div> </div> <div class=franklin-content > <h1 id=gp_macro_for_plotting ><a href="#gp_macro_for_plotting">@gp macro for plotting</a></h1> <div class=franklin-toc ><ol><li><a href="#gp_macro_for_plotting">@gp macro for plotting</a><ol><li><a href="#simple_plots">Simple plots</a><li><a href="#full_customize_plot">Full customize plot</a><li><a href="#default_colors_with_lines">Default colors with lines</a><li><a href="#black_background_and_colormaps">Black background, and colormaps</a><li><a href="#color_as_a_third_dimension">Color as a third dimension</a><li><a href="#several_colormaps_and_layout">Several colormaps and layout </a></ol><li><a href="#scatter_plots">Scatter plots </a><ol><li><a href="#simple_scatter_plot">simple scatter plot </a><li><a href="#full_customize_scatter_plot">Full customize scatter plot</a><li><a href="#color_as_a_third_dimension__2">Color as a third dimension</a><li><a href="#filled_curves">Filled curves </a><ol><li><a href="#histograms">Histograms </a></ol></ol></ol></div> <h2 id=simple_plots ><a href="#simple_plots">Simple plots</a></h2> The simplest plot can be generated and save it with</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
+<!doctype html> <!-- Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes Free for personal and commercial use under the MIT license https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE --> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/gnuplot-examples/libs/katex/katex.min.css"> <link rel=stylesheet  href="/gnuplot-examples/libs/highlight/github.min.css"> <link rel=stylesheet  href="/gnuplot-examples/css/franklin.css"> <link rel=stylesheet  href="/gnuplot-examples/css/minimal-mistakes.css"> <link rel=stylesheet  href="/gnuplot-examples/css/adjust.css"> <!--[if IE ]> <style> /* old IE unsupported flexbox fixes */ .greedy-nav .site-title { padding-right: 3em; } .greedy-nav button { position: absolute; top: 0; right: 0; height: 100%; } </style> <![endif]--> <link rel=icon  href="/gnuplot-examples/assets/favicon.png"> <title>Code blocks</title> <body class=layout--single > <div class=masthead > <div class=masthead__inner-wrap > <div class=masthead__menu > <nav id=site-nav  class=greedy-nav > <a class=site-title  href="/gnuplot-examples/">@gp & @gsp</a> <ul class=visible-links > <li class=masthead__menu-item ><a href="/gnuplot-examples/menu1/" >2D plots</a> <li class=masthead__menu-item ><a href="/gnuplot-examples/menu2/" >3D plots</a> <li class=masthead__menu-item ><a href="/gnuplot-examples/menu3/">Feature</a> </ul> <button class="greedy-nav__toggle hidden" type=button > <span class=visually-hidden >Toggle menu</span> <div class=navicon ></div> </button> <ul class="hidden-links hidden"></ul> </nav> </div> </div> </div> <div class=initial-content > <div id=main  role=main > <div class="sidebar sticky"> <div itemscope itemtype="https://schema.org/Person"> <!-- <div class=author__avatar > <img src="/gnuplot-examples/assets/minimal-mistakes/zenobia.png" alt="Septimia Zenobia" itemprop=image > </div> --> <!-- <div class=author__content > <h3 class=author__name  itemprop=name >Lazaro Alonso</h3> <p class=author__bio  itemprop=description >Probably not a commoner.</p> </div> --> <div class=author__urls-wrapper > <button class="btn btn--inverse">Follow</button> <ul class="author__urls social-icons"> <li itemprop=homeLocation  itemscope itemtype="https://schema.org/Place"> <i class="fas fa-fw fa-map-marker-alt" aria-hidden=true ></i> <span itemprop=name >Tierra</span> <li><a href="https://twitter.com/LazarusAlon" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> </ul> </div> </div> </div> <div class=franklin-content > <h1 id=gp_macro_for_plotting ><a href="#gp_macro_for_plotting">@gp macro for plotting</a></h1> <div class=franklin-toc ><ol><li><a href="#gp_macro_for_plotting">@gp macro for plotting</a><ol><li><a href="#simple_plots">Simple plots</a><li><a href="#full_customize_plot">Full customize plot</a><li><a href="#default_colors_with_lines">Default colors with lines</a><li><a href="#black_background_and_colormaps">Black background, and colormaps</a><li><a href="#color_as_a_third_dimension">Color as a third dimension</a><li><a href="#several_colormaps_and_layout">Several colormaps and layout </a></ol><li><a href="#scatter_plots">Scatter plots </a><ol><li><a href="#simple_scatter_plot">simple scatter plot </a><li><a href="#full_customize_scatter_plot">Full customize scatter plot</a><li><a href="#color_as_a_third_dimension__2">Color as a third dimension</a><li><a href="#filled_curves">Filled curves </a></ol><li><a href="#histograms">Histograms </a><li><a href="#plot_errors_box_plots_error_bars">Plot errors, box plots, error bars</a><li><a href="#bubble_plots">Bubble plots</a><li><a href="#candlesticks">Candlesticks</a></ol></div> <h2 id=simple_plots ><a href="#simple_plots">Simple plots</a></h2> The simplest plot can be generated and save it with</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
 <span class=hljs-meta >@gp</span> <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
 <span class=hljs-comment >#save("plt2_ex1.gp")</span>
 <span class=hljs-comment >#save(term="cairolatex standalone", output="plt2_ex1.tex")</span>
@@ -142,7 +142,7 @@ x = LinRange(-<span class=hljs-number >10</span>,<span class=hljs-number >10</sp
 <span class=hljs-meta >@gp</span>(x, sin.(x), sin.(x) .+ <span class=hljs-number >1</span>, 
     <span class=hljs-string >"with filledcu lc '#56B4E9' fs transparent solid 0.3"</span> )
 <span class=hljs-meta >@gp</span>(:-,x, cos.(x), <span class=hljs-number >1</span> .+ cos.(x), 
-    <span class=hljs-string >"with filledcu lc 'red' fs transparent solid 0.5"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_ex15.png" alt=""> <h3 id=histograms ><a href="#histograms">Histograms </a></h3> Three different ways two plot histograms. <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions, StatsBase, LinearAlgebra, Random
+    <span class=hljs-string >"with filledcu lc 'red' fs transparent solid 0.5"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_ex15.png" alt=""> <h1 id=histograms ><a href="#histograms">Histograms </a></h1> Three different ways two plot histograms. <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions, StatsBase, LinearAlgebra, Random
 Random.seed!(<span class=hljs-number >123</span>)
 <span class=hljs-keyword >function</span> histVals(μ,σ; npts=<span class=hljs-number >1000</span>, izq = -<span class=hljs-number >8</span>, der = <span class=hljs-number >6</span>, paso = <span class=hljs-number >0.15</span>)
     dist = rand(Normal(μ,σ), npts)
@@ -160,4 +160,183 @@ Random.seed!(<span class=hljs-number >123</span>)
     xlab = <span class=hljs-string >"x"</span>, ylab = <span class=hljs-string >"P(x)"</span>)
 <span class=hljs-meta >@gp</span>(:-, histVals(<span class=hljs-number >2</span>,<span class=hljs-number >1</span>)..., 
     <span class=hljs-string >"w fillsteps t '2,1' lc '#009E73' fs transparent solid 0.2 noborder"</span>, 
-    xlab = <span class=hljs-string >"x"</span>, ylab = <span class=hljs-string >"P(x)"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_ex16.png" alt=""> <p>more soon... <div class=page-foot > <div class=copyright > &copy; Lazaro Alonso. Last modified: March 21, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>. </div> </div> </div> </div> </div> <div class=page__footer > <footer> <div class=page__footer-follow > <ul class=social-icons > <!-- <li><strong>Follow:</strong> <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> --> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> </ul> </div> <div class=page__footer-copyright >&copy; Lazaro Alonso. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel=nofollow >Minimal Mistakes</a>.</div> </footer> </div> <script src="/gnuplot-examples/libs/minimal-mistakes/main.min.js"></script> <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>
+    xlab = <span class=hljs-string >"x"</span>, ylab = <span class=hljs-string >"P(x)"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_ex16.png" alt=""> <h1 id=plot_errors_box_plots_error_bars ><a href="#plot_errors_box_plots_error_bars">Plot errors, box plots, error bars</a></h1> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+<span class=hljs-meta >@gp</span>(x, y, yerr, <span class=hljs-string >"w boxerrorbars t 'test' lc 'black'"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>, <span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs1.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+<span class=hljs-meta >@gp</span>(x, y, yerr, <span class=hljs-number >1.5</span>xerr, <span class=hljs-string >"w boxerrorbars t 'test' lc 'black'"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs2.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, lcval, <span class=hljs-string >"w boxerrorbars notit lc palette"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs3.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, lcval,
+    <span class=hljs-string >"w boxerrorbars notit lc palette fs solid 0.5"</span>,
+    <span class=hljs-string >"set xrange [0:22]"</span>, <span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs4.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, lcval,
+    <span class=hljs-string >"w boxerrorbars notit lc palette fs solid 0.5 border -1"</span>,
+    <span class=hljs-string >"set xrange [0:22]"</span>, <span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs5.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, lcval,
+    <span class=hljs-string >"w boxerrorbars notit lc palette fs solid 0.5 border -1"</span>,
+    <span class=hljs-string >"set xrange [0:22]"</span>, <span class=hljs-string >"set yrange [0:6]"</span>,<span class=hljs-string >"set boxwidth 0.8"</span>, 
+    <span class=hljs-comment >#palette(:viridis), # it's available in dev branch</span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs6.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, <span class=hljs-string >"w boxxyerrorbars t 'test' lc 'black'"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs7.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, lcval, <span class=hljs-string >"w boxxyerrorbars t 'test' lc var"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs8.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, lcval, <span class=hljs-string >"w boxxyerrorbars t 'test' lc palette"</span>,
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>,
+    <span class=hljs-comment >#palette(:viridis),</span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs9.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, lcval,<span class=hljs-string >"w boxxy t 'test' lc palette fs solid"</span>,
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>,
+    <span class=hljs-comment >#palette(:viridis),</span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs10.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, lcval,
+    <span class=hljs-string >"w boxxy notit lc palette fs transparent solid 0.65"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>,
+    <span class=hljs-comment >#palette(:viridis) </span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs11.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, <span class=hljs-string >"w xyerrorbars t 'test' lc 'black'"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs12.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, lcval, <span class=hljs-string >"w xyerrorbars t 'test' lc var"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs13.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, xerr, lcval, <span class=hljs-string >"w xyerrorbars t 'test' lc palette"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>, 
+    <span class=hljs-comment >#palette(:viridis),</span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs14.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, lcval, <span class=hljs-string >"w errorbars t 'test' lc var"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs15.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random, ColorSchemes
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+yerr = <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, yerr, lcval, <span class=hljs-string >"w errorbars t 'test' lc palette"</span>,
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>,
+    <span class=hljs-comment >#palette(:viridis),</span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs16.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, xerr, <span class=hljs-string >"w xerr t 'test' lc 'black'"</span>,
+    <span class=hljs-string >"set xrange [0:22]"</span>, <span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs17.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, xerr, lcval, <span class=hljs-string >"w xerr t 'test' lc var"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>, <span class=hljs-string >"set yrange [0:6]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs18.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+Random.seed!(<span class=hljs-number >145</span>)
+x = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>
+y = <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>)
+xerr = abs.(randn(<span class=hljs-number >10</span>))
+lcval = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+<span class=hljs-meta >@gp</span>(x, y, xerr, lcval, <span class=hljs-string >"w xerr t 'test' lc palette"</span>, 
+    <span class=hljs-string >"set xrange [0:22]"</span>,<span class=hljs-string >"set yrange [0:6]"</span>,
+    <span class=hljs-comment >#palette(:viridis),</span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/plt_errs19.png" alt=""> <h1 id=bubble_plots ><a href="#bubble_plots">Bubble plots</a></h1> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot,Random
+Random.seed!(<span class=hljs-number >124</span>)
+n = <span class=hljs-number >30</span>
+x= randn(n)
+y = rand(n)
+z=randn(n)
+<span class=hljs-meta >@gp</span> x y <span class=hljs-number >2</span>z <span class=hljs-string >"with points notit lt 1 pt 4 ps var "</span></code></pre> <img src="/gnuplot-examples/assets/menu1/code/burbuja1.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot,Random
+Random.seed!(<span class=hljs-number >124</span>)
+n = <span class=hljs-number >30</span>
+x= randn(n)
+y = rand(n)
+z=randn(n)
+<span class=hljs-meta >@gp</span>(x, y, <span class=hljs-number >2</span>z, z, <span class=hljs-string >"with points notit pt 4 ps var lc palette"</span>,
+    <span class=hljs-string >"set xrange [-2.2:2]"</span>, <span class=hljs-string >"set yrange [-0.1:1.1]"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/burbuja2.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot,Random
+Random.seed!(<span class=hljs-number >124</span>)
+n = <span class=hljs-number >30</span>
+x= randn(n)
+y = rand(n)
+z=randn(n)
+<span class=hljs-meta >@gp</span>(x, y, <span class=hljs-number >2</span>z, z, <span class=hljs-string >"with points notit pt 7 ps var lc palette"</span>,
+    <span class=hljs-string >"set xrange [-2.2:2]"</span>, <span class=hljs-string >"set yrange [-0.1:1.1]"</span>, 
+    <span class=hljs-comment >#palette(:viridis)</span>
+    )</code></pre> <img src="/gnuplot-examples/assets/menu1/code/burbuja3.png" alt=""> <p>Next... Candlesticks... w.. <h1 id=candlesticks ><a href="#candlesticks">Candlesticks</a></h1> <ul> <li><p>financial data: date open low high close</p> <li><p>whisker plot: x box<em>min whisker</em>min whisker<em>high box</em>high</p> </ul> <div class=page-foot > <div class=copyright > &copy; Lazaro Alonso. Last modified: March 22, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>. </div> </div> </div> </div> </div> <div class=page__footer > <footer> <div class=page__footer-follow > <ul class=social-icons > <!-- <li><strong>Follow:</strong> <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> --> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> </ul> </div> <div class=page__footer-copyright >&copy; Lazaro Alonso. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel=nofollow >Minimal Mistakes</a>.</div> </footer> </div> <script src="/gnuplot-examples/libs/minimal-mistakes/main.min.js"></script> <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>

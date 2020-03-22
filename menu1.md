@@ -309,7 +309,7 @@ save(term="pngcairo size 600,400", output="plt_ex15.png") # hide
 ```
 \fig{plt_ex15}
 
-### Histograms 
+# Histograms 
 Three different ways two plot histograms. 
 ```julia:./ex16.jl
 using Distributions, StatsBase, LinearAlgebra, Random
@@ -335,4 +335,320 @@ save(term="pngcairo size 600,400", output="plt_ex16.png") # hide
 ```
 \fig{plt_ex16}
 
-more soon... 
+# Plot errors, box plots, error bars
+```julia:./ex17.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+@gp(x, y, yerr, "w boxerrorbars t 'test' lc 'black'", 
+    "set xrange [0:22]", "set yrange [0:6]")
+    save(term="pngcairo size 600,400", output="plt_errs1.png") # hide
+```
+\fig{plt_errs1}
+
+```julia:./ex18.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+@gp(x, y, yerr, 1.5xerr, "w boxerrorbars t 'test' lc 'black'", 
+    "set xrange [0:22]","set yrange [0:6]")
+    save(term="pngcairo size 600,400", output="plt_errs2.png") #hide
+```
+\fig{plt_errs2}
+
+```julia:./ex19.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, lcval, "w boxerrorbars notit lc palette", 
+    "set xrange [0:22]","set yrange [0:6]")
+    save(term="pngcairo size 600,400", output="plt_errs3.png") # hide
+```
+\fig{plt_errs3}
+
+```julia:./ex20.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, lcval,
+    "w boxerrorbars notit lc palette fs solid 0.5",
+    "set xrange [0:22]", "set yrange [0:6]")
+    save(term="pngcairo size 600,400", output="plt_errs4.png") # hide
+```
+\fig{plt_errs4}
+
+```julia:./ex21.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, lcval,
+    "w boxerrorbars notit lc palette fs solid 0.5 border -1",
+    "set xrange [0:22]", "set yrange [0:6]")
+    save(term="pngcairo size 600,400", output="plt_errs5.png") # hide
+```
+\fig{plt_errs5}
+
+```julia:./ex22.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, lcval,
+    "w boxerrorbars notit lc palette fs solid 0.5 border -1",
+    "set xrange [0:22]", "set yrange [0:6]","set boxwidth 0.8", 
+    #palette(:viridis), # it's available in dev branch
+    )
+save(term="pngcairo size 600,400", output="plt_errs6.png") # hide
+```
+\fig{plt_errs6}
+
+```julia:./ex23.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+@gp(x, y, yerr, xerr, "w boxxyerrorbars t 'test' lc 'black'", 
+    "set xrange [0:22]","set yrange [0:6]")
+save(term="pngcairo size 600,400", output="plt_errs7.png") # hide
+```
+\fig{plt_errs7}
+
+```julia:./ex24.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, xerr, lcval, "w boxxyerrorbars t 'test' lc var", 
+    "set xrange [0:22]","set yrange [0:6]")
+save(term="pngcairo size 600,400", output="plt_errs8.png") # hide
+```
+\fig{plt_errs8}
+
+```julia:./ex25.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, xerr, lcval, "w boxxyerrorbars t 'test' lc palette",
+    "set xrange [0:22]","set yrange [0:6]",
+    #palette(:viridis),
+    )
+save(term="pngcairo size 600,400", output="plt_errs9.png") # hide
+```
+\fig{plt_errs9}
+
+```julia:./ex26.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, xerr, lcval,"w boxxy t 'test' lc palette fs solid",
+    "set xrange [0:22]","set yrange [0:6]",
+    #palette(:viridis),
+    )
+save(term="pngcairo size 600,400", output="plt_errs10.png") # hide
+```
+\fig{plt_errs10}
+
+```julia:./ex27.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+lcval = 1:10
+
+@gp(x, y, yerr, xerr, lcval,
+    "w boxxy notit lc palette fs transparent solid 0.65", 
+    "set xrange [0:22]","set yrange [0:6]",
+    #palette(:viridis) 
+    )
+save(term="pngcairo size 600,400", output="plt_errs11.png") # hide
+```
+\fig{plt_errs11}
+
+```julia:./ex28.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+@gp(x, y, yerr, xerr, "w xyerrorbars t 'test' lc 'black'", 
+    "set xrange [0:22]","set yrange [0:6]")
+save(term="pngcairo size 600,400", output="plt_errs12.png") # hide
+```
+\fig{plt_errs12}
+
+```julia:./ex29.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, xerr, lcval, "w xyerrorbars t 'test' lc var", 
+    "set xrange [0:22]","set yrange [0:6]")
+save(term="pngcairo size 600,400", output="plt_errs13.png") # hide
+```
+\fig{plt_errs13}
+
+```julia:./ex30.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, xerr, lcval, "w xyerrorbars t 'test' lc palette", 
+    "set xrange [0:22]","set yrange [0:6]", 
+    #palette(:viridis),
+    )
+save(term="pngcairo size 600,400", output="plt_errs14.png") # hide
+```
+\fig{plt_errs14}
+
+```julia:./ex31.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, lcval, "w errorbars t 'test' lc var", 
+    "set xrange [0:22]","set yrange [0:6]")
+save(term="pngcairo size 600,400", output="plt_errs15.png") # hide
+```
+\fig{plt_errs15}
+
+```julia:./ex32.jl
+using Gnuplot, Random, ColorSchemes
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+yerr = 0.4*abs.(randn(10))
+lcval = 1:10
+@gp(x, y, yerr, lcval, "w errorbars t 'test' lc palette",
+    "set xrange [0:22]","set yrange [0:6]",
+    #palette(:viridis),
+    )
+save(term="pngcairo size 600,400", output="plt_errs16.png") # hide
+```
+\fig{plt_errs16}
+
+```julia:./ex33.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, xerr, "w xerr t 'test' lc 'black'",
+    "set xrange [0:22]", "set yrange [0:6]")
+save(term="pngcairo size 600,400", output="plt_errs17.png") # hide
+```
+\fig{plt_errs17}
+
+```julia:./ex34.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, xerr, lcval, "w xerr t 'test' lc var", 
+    "set xrange [0:22]", "set yrange [0:6]")
+save(term="pngcairo size 600,400", output="plt_errs18.png") # hide
+```
+\fig{plt_errs18}
+
+
+```julia:./ex35.jl
+using Gnuplot, Random
+Random.seed!(145)
+x = 1:2:20
+y = 5*rand(10)
+xerr = abs.(randn(10))
+lcval = 1:10
+@gp(x, y, xerr, lcval, "w xerr t 'test' lc palette", 
+    "set xrange [0:22]","set yrange [0:6]",
+    #palette(:viridis),
+    )
+save(term="pngcairo size 600,400", output="plt_errs19.png") # hide
+```
+\fig{plt_errs19}
+# Bubble plots
+
+```julia:./ex36.jl
+using Gnuplot,Random
+Random.seed!(124)
+n = 30
+x= randn(n)
+y = rand(n)
+z=randn(n)
+@gp x y 2z "with points notit lt 1 pt 4 ps var "
+save(term="pngcairo size 600,400", output="burbuja1.png") # hide
+```
+\fig{burbuja1}
+```julia:./ex37.jl
+using Gnuplot,Random
+Random.seed!(124)
+n = 30
+x= randn(n)
+y = rand(n)
+z=randn(n)
+@gp(x, y, 2z, z, "with points notit pt 4 ps var lc palette",
+    "set xrange [-2.2:2]", "set yrange [-0.1:1.1]")
+save(term="pngcairo size 600,400", output="burbuja2.png") # hide
+```
+\fig{burbuja2}
+
+```julia:./ex38.jl
+using Gnuplot,Random
+Random.seed!(124)
+n = 30
+x= randn(n)
+y = rand(n)
+z=randn(n)
+@gp(x, y, 2z, z, "with points notit pt 7 ps var lc palette",
+    "set xrange [-2.2:2]", "set yrange [-0.1:1.1]", 
+    #palette(:viridis)
+    )
+save(term="pngcairo size 600,400", output="burbuja3.png") # hide
+```
+\fig{burbuja3}
+
+Next... Candlesticks... w..
+# Candlesticks
+- financial data: date open low high close
+- whisker plot: x box_min whisker_min whisker_high box_high
