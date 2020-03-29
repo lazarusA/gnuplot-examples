@@ -63,4 +63,54 @@ V = LinRange(-<span class=hljs-literal >pi</span>, <span class=hljs-literal >pi<
     y = [<span class=hljs-number >.5</span> * sin(v)                        <span class=hljs-keyword >for</span> u <span class=hljs-keyword >in</span> U, v <span class=hljs-keyword >in</span> V]
     z = [sin(u) + <span class=hljs-number >.5</span> * sin(u) * cos(v)      <span class=hljs-keyword >for</span> u <span class=hljs-keyword >in</span> U, v <span class=hljs-keyword >in</span> V]
     <span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"w pm3d"</span>
-<span class=hljs-keyword >end</span></code></pre> <ul> <li><p>Klein bottle</p> <li><p>Kuen&#39;s Surface</p> </ul> <div class=page-foot > <div class=copyright > &copy; Lazaro Alonso. Last modified: March 21, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>. </div> </div> </div> </div> </div> <div class=page__footer > <footer> <div class=page__footer-follow > <ul class=social-icons > <!-- <li><strong>Follow:</strong> <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> --> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> </ul> </div> <div class=page__footer-copyright >&copy; Lazaro Alonso. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel=nofollow >Minimal Mistakes</a>.</div> </footer> </div> <script src="/gnuplot-examples/libs/minimal-mistakes/main.min.js"></script> <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>
+<span class=hljs-keyword >end</span></code></pre> <ul> <li><p>Klein bottle</p> <li><p>Kuen&#39;s Surface</p> </ul> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, LinearAlgebra
+<span class=hljs-keyword >using</span> ParameterizedFunctions, DifferentialEquations
+g = <span class=hljs-meta >@ode_def</span> <span class=hljs-keyword >begin</span>
+  dx = σ*(y - x)
+  dy = x*(ρ - z) - y
+  dz = x*y - β*z
+<span class=hljs-keyword >end</span> σ ρ β
+u0 = [<span class=hljs-number >1.0</span>; <span class=hljs-number >0.0</span>; <span class=hljs-number >0.0</span>]
+tspan = (<span class=hljs-number >0.0</span>, <span class=hljs-number >80.0</span>)
+p = [<span class=hljs-number >10.0</span>,<span class=hljs-number >28.0</span>,<span class=hljs-number >8</span>/<span class=hljs-number >3</span>]
+prob = ODEProblem(g, u0, tspan, p)
+sol = solve(prob, Tsit5(), saveat = <span class=hljs-number >0.01</span>)
+x, y, z = sol[<span class=hljs-number >1</span>,:], sol[<span class=hljs-number >2</span>,:], sol[<span class=hljs-number >3</span>,:]
+tempo = sol.t
+<span class=hljs-comment ># plot</span>
+<span class=hljs-meta >@gsp</span> <span class=hljs-string >"set xyplane at -3"</span> <span class=hljs-string >"set auto fix"</span> <span class=hljs-string >"set grid"</span> :-
+<span class=hljs-meta >@gsp</span> :- x y z tempo <span class=hljs-string >"w l notit lc palette"</span> <span class=hljs-comment >#palette(:plasma)</span>
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set title 'Lorenz attractor'"</span> <span class=hljs-string >"set cblabel 'time'"</span> 
+<span class=hljs-meta >@gsp</span> :- xlab = <span class=hljs-string >"x"</span> ylab = <span class=hljs-string >"y"</span> zlab = <span class=hljs-string >"z"</span> 
+save(term=<span class=hljs-string >"pngcairo size 1200,800"</span>, output=<span class=hljs-string >"lorenz.png"</span>)</code></pre> Banner code... <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot</code></pre>
+<div class=page-foot >
+  <div class=copyright >
+    &copy; Lazaro Alonso. Last modified: March 29, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+  </div>
+</div>
+
+</div>
+
+
+      </div> 
+    </div>   
+
+    <div class=page__footer >
+      <footer>
+        
+        
+        <div class=page__footer-follow >
+          <ul class=social-icons >
+             <!--
+            <li><strong>Follow:</strong>
+            <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a>
+            -->
+            <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a>
+          </ul>
+        </div>
+        <div class=page__footer-copyright >&copy; Lazaro Alonso. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel=nofollow >Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="/gnuplot-examples/libs/minimal-mistakes/main.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>
