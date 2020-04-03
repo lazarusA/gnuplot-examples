@@ -5,5 +5,5 @@ using Gnuplot
 @gsp :- 2 x y Z "w points pt 3 ps 3" "set view 55, 65" :-
 @gsp :- 3 x y Z "w l palette" "set view 55, 65" :-
 @gsp :- 4 x y Z "w pm3d" "set view 55, 65" "set key off" :-
-@gsp :- x y Z "w l lc 'white'" 
-save(term="png size 1600,1200", output="plt3d_ex2.png")
+@gsp :- x y Z "w l lc 'white'"
+save(term="png size 1600,1200", output="./code/plt3d_ex2.png") # hide
