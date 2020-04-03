@@ -2,11 +2,7 @@
 using Gnuplot,Random
 Random.seed!(124)
 n = 30
-x= randn(n)
-y = rand(n)
-z=randn(n)
-@gp(x, y, 2z, z, "with points notit pt 7 ps var lc palette",
-    "set xrange [-2.2:2]", "set yrange [-0.1:1.1]", 
-    #palette(:viridis)
-    )
-save(term="pngcairo size 600,400", output="burbuja3.png") # hide
+x, y, z = randn(n), randn(n), randn(n)
+@gp x y 5z z "with points notit pt 7 ps var lc palette" palette(:ice)
+@gp :- xrange = (-2.2,2.5) yrange = (-2.2,2.2)
+save(term="pngcairo size 600,400", output="./code/burbuja3.png") # hide
