@@ -43,8 +43,38 @@ or real data with a custom colormap
 
 \fig{plt3d_ex6}
 
-to be continued...
+## Tubes
+
+\input{julia}{/assets/menu2/tubes1.jl}
+\fig{tubes1}
+
+\input{julia}{/assets/menu2/tubes2.jl}
+\fig{tubes2}
+
+## Spheres
+
+\input{julia}{/assets/menu2/sphere1.jl}
+\fig{sphere1}
+
+\input{julia}{/assets/menu2/sphere2.jl}
+\fig{sphere2}
+
+\input{julia}{/assets/menu2/sphere3.jl}
+\fig{sphere3}
+
+\input{julia}{/assets/menu2/sphere4.jl}
+\fig{sphere4}
+## Torus
+
+\input{julia}{/assets/menu2/torus1.jl}
+\fig{torus1}
+
+\input{julia}{/assets/menu2/torus2.jl}
+\fig{torus2}
+
+\input{julia}{/assets/menu2/torus3.jl}
+\fig{torus3}
 
 
-
+Note: with the pdf terminal all outputs are much better.  
 

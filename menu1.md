@@ -58,6 +58,11 @@ For a more cumbersome example, consider the following with a `black` background 
 \input{julia}{/assets/menu1/ex7.jl}
 \fig{plt2_ex7}
 
+A more cumbersome example with a glow effect 
+
+\input{julia}{/assets/menu1/glowbg.jl}
+\fig{glow1}
+
 ## Color as a third dimension
 Using as reference the previous example we can use any `colormap` in  `Gnuplot`'s `palettes` as a way to enconde a third dimension. 
 \input{julia}{/assets/menu1/ex8.jl}
