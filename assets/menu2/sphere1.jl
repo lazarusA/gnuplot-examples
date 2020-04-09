@@ -6,5 +6,5 @@ x = [r * cos(θ) * sin(ϕ)      for θ in Θ, ϕ in Φ]
 y = [r * sin(θ) * sin(ϕ)      for θ in Θ, ϕ in Φ]
 z = [r * cos(ϕ) for θ in Θ, ϕ in Φ]
 @gsp "set pm3d depthorder" :-
-@gsp :-  x y z "w l"
+@gsp :- x y z "w l" 
 save(term="pngcairo size 600,600", output="sphere1.png") # hide

@@ -5,13 +5,13 @@ bgcolor = bgcp1*bgcp2
 U  = LinRange(-π,π, 50)
 V = LinRange(-π,π, 100)
 r = 0.5
-x = [1 + cos(u) + .5 * cos(u) * cos(v)  for u in U, v in V]
-y = [.5 * sin(v)                        for u in U, v in V]
-z = [sin(u) + .5 * sin(u) * cos(v)      for u in U, v in V]
+x = [1 + cos(u) + r * cos(u) * cos(v)  for u in U, v in V]
+y = [r * sin(v)                        for u in U, v in V]
+z = [sin(u) + r * sin(u) * cos(v)      for u in U, v in V]
 @gsp "set pm3d depthorder"
 @gsp :- "set style fill transparent solid 0.5"
 @gsp :- "set pm3d lighting primary 0.05 specular 0.2"
-@gsp :- x y z "w pm3d notit" palette(:devon) "set view 108,2"
+@gsp :- x y z "w pm3d notit" palette(:cool) "set view 108,2"
 @gsp :- "unset border" "set xyplane 0"
 @gsp :- "unset tics"
 @gsp :- "unset colorbox"

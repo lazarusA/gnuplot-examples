@@ -14,5 +14,5 @@ z = [r * cos(ϕ) for θ in Θ, ϕ in Φ]
 @gsp :- 1 x y z "w pm3d" "set xyplane 0" palette(:viridis) :-
 @gsp :- 2 x y z "w pm3d" "set xyplane 0" palette(:plasma) :-
 @gsp :- 3 x y z "w pm3d" "set xyplane 0" palette(:cool) :-
-@gsp :- 4 x y z "w pm3d" "set xyplane 0" palette(:devon)
+@gsp :- 4 x y z "w pm3d" "set xyplane 0" palette(:bone)
 save(term="pngcairo size 1200,1200", output="sphere4.png") # hide

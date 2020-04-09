@@ -14,9 +14,9 @@ b = -2.4
 t = LinRange(0,5*π,500)
 x = (a .+ b*t) .* cos.(t)
 y = (a .+ b*t) .* sin.(t)
-cmaps = [:magma, :viridis, :plasma, :inferno, :berlin,
-    :leonardo, :devon, :spring, :ice]
-@gp :- "set multiplot layout 3,3; set key off;
+cmaps = [:cool, :viridis, :plasma, :inferno, :thermal,
+    :leonardo, :winter, :spring, :ice]
+@gp "set multiplot layout 3,3; set key off;
     unset ytics; unset xtics; unset border" :-
 for i in 1:9
     @gp :- i title = "$(cmaps[i])" "set size square" :-
