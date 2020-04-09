@@ -2,9 +2,9 @@ using Gnuplot
 U  = LinRange(-π,π, 100)
 V = LinRange(-π,π, 100)
 r = 0.5
-x = [1 + cos(u) + .5 * cos(u) * cos(v)  for u in U, v in V]
-y = [.5 * sin(v)                        for u in U, v in V]
-z = [sin(u) + .5 * sin(u) * cos(v)      for u in U, v in V]
+x = [1 + cos(u) + r * cos(u) * cos(v)  for u in U, v in V]
+y = [r * sin(v)                        for u in U, v in V]
+z = [sin(u) + r * sin(u) * cos(v)      for u in U, v in V]
 bgcp1 = "set object rectangle from screen 0,0 to screen 1,1"
 bgcp2 = " behind fillcolor '#212946' fillstyle solid noborder"
 bgcolor = bgcp1*bgcp2

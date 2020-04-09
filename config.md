@@ -6,7 +6,7 @@ The website_* must be defined for the RSS to work
 @def prepath = "gnuplot-examples"
 @def website_title = "gp gallery"
 @def website_descr = "gp in julia"
-@def website_url   = "https://tlienart.github.io/FranklinTemplates.jl/"
+@def website_url   = "https://lazarusa.github.io/gnuplot-examples/"
 
 @def author = "Lazaro Alonso"
 

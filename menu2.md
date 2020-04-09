@@ -1,8 +1,5 @@
 @def title = "3d plots"
 @def hascode = true
-@def rss = "3d plots... ![](https://upload.wikimedia.org/wikipedia/en/b/b0/Rick_and_Morty_characters.jpg)"
-@def rss_title = "More goodies"
-@def rss_pubdate = Date(2019, 5, 1)
 
 \tableofcontents <!-- you can use \toc as well -->
 

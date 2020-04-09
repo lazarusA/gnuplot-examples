@@ -1,12 +1,8 @@
 @def title = "feature"
 @def hascode = true
-@def rss = "3d plots... ![](https://upload.wikimedia.org/wikipedia/en/b/b0/Rick_and_Morty_characters.jpg)"
-@def rss_title = "More goodies"
-@def rss_pubdate = Date(2019, 5, 1)
 
-\tableofcontents <!-- you can use \toc as well -->
 
-# First example
+# Front page images
 \input{julia}{/assets/menu3/exf_1.jl}
 \fig{pltf_ex1}
 
@@ -48,8 +44,7 @@ for loop in 1:2
     @gsp :- x y z "w pm3d"
 end
 ```
-- Klein bottle
-- Kuen's Surface
+\fig{tori}
 
 ```julia
 using Gnuplot, LinearAlgebra
@@ -73,6 +68,8 @@ tempo = sol.t
 @gsp :- xlab = "x" ylab = "y" zlab = "z" 
 save(term="pngcairo size 1200,800", output="lorenz.png") # hide
 ```
+\fig{lorenz}
+
 Banner code... 
 ```julia
 using Gnuplot

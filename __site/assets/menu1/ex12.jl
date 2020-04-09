@@ -3,8 +3,8 @@ using Gnuplot, ColorSchemes, Random
 Random.seed!(123)
 n = 15
 x, y, color = rand(n), rand(n), rand(n)
-cmaps = [:magma, :viridis, :plasma, :inferno, :berlin, :leonardo,
-    :devon, :spring, :ice]
+cmaps = [:cool, :viridis, :plasma, :inferno, :thermal,
+    :leonardo, :winter, :spring, :ice]
 @gp "set multiplot layout 3,3; set key off" :-
 for i in 1:9
     @gp :- i title = "$(cmaps[i]), pt $(i)" "set size square" :-

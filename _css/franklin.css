@@ -59,7 +59,7 @@ html {
 .franklin-content {
     position: relative;
     padding-left: 12.5%;
-    padding-right: 12.5%;
+    padding-right: 2.5%;
     line-height: 1.35em; }
 
 /* on wide screens, fix content width to a max value */
@@ -182,12 +182,18 @@ html {
 ================================================================== */
 
 .franklin-content img {
-    width: 80%;
+    width: 70%;
     text-align: center;
-    padding-left: 10%; }
+    padding-left: 2%; }
+    
+.franklin-content img.one {
+    width: 100%;
+    text-align: center;
+    padding-left: 5%; }
+    
 
 .franklin-content .img-small img {
-    width: 70%;
+    width: 90%;
     text-align: center;
     padding-left: 10%; }
 
