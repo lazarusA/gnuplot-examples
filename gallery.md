@@ -14,6 +14,8 @@
     
     <a href="/assets/images/cscripts/polygons.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/polygons.png"></a>
     
+    <a href="/assets/menu1/plt2_ex5.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/menu1/code/plt2_ex5.png"></a>
+    
     <a href="/assets/menu1/ex38.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/burbuja.png"></a>
     
     <a href="/assets/images/cscripts/ribbon.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/ribbon.png"></a>

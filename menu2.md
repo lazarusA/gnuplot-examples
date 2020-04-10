@@ -29,6 +29,12 @@ And with few more options we can get a countour plot.
 \input{julia}{/assets/menu2/ex3d_4.jl}
 \fig{plt3d_ex4}
 
+## Lorenz attractor
+\input{julia}{/assets/menu2/lorenz.jl}
+\fig{lorenz}
+
+See the feature section for the animation. 
+
 ## Heat map
 A heat map from data or a matrix can be easily plotted as
 \input{julia}{/assets/menu2/ex3d_5.jl}
