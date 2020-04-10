@@ -13,7 +13,7 @@ bgcolor = bgcp1*bgcp2
 @gsp :- "set style fill solid 1.0"
 @gsp :- "set pm3d lighting primary 0.35 specular 0.2"
 @gsp :- x y z "w pm3d notit" palette(:Wistia) "set view 108,2"
-@gsp :- "unset border" "set xyplane 0"
+@gsp :- "unset border" "set xyplane 0" "set view equal xyz"
 @gsp :- "unset tics"
 @gsp :- "unset colorbox"
 @gsp :- bgcolor

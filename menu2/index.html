@@ -1,7 +1,7 @@
 <!doctype html> <!-- Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes Free for personal and commercial use under the MIT license https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE --> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/gnuplot-examples/libs/katex/katex.min.css"> <link rel=stylesheet  href="/gnuplot-examples/libs/highlight/github.min.css"> <link rel=stylesheet  href="/gnuplot-examples/css/franklin.css"> <link rel=stylesheet  href="/gnuplot-examples/css/minimal-mistakes.css"> <link rel=stylesheet  href="/gnuplot-examples/css/adjust.css"> <!--[if IE ]> <style> /* old IE unsupported flexbox fixes */ .greedy-nav .site-title { padding-right: 3em; } .greedy-nav button { position: absolute; top: 0; right: 0; height: 100%; } </style> <![endif]--> <link rel=icon  href="/gnuplot-examples/assets/favicon.png"> <title>3d plots</title> <body class=layout--single > <div class=masthead > <div class=masthead__inner-wrap > <div class=masthead__menu > <nav id=site-nav  class=greedy-nav > <a class=site-title  href="/gnuplot-examples/">@gp & @gsp</a> <ul class=visible-links > <li class=masthead__menu-item ><a href="/gnuplot-examples/gallery/" >Gallery</a> <li class=masthead__menu-item ><a href="/gnuplot-examples/menu1/" >2D plots</a> <li class=masthead__menu-item ><a href="/gnuplot-examples/menu2/" >3D plots</a> <li class=masthead__menu-item ><a href="/gnuplot-examples/menu3/">Feature</a> </ul> <button class="greedy-nav__toggle hidden" type=button > <span class=visually-hidden >Toggle menu</span> <div class=navicon ></div> </button> <ul class="hidden-links hidden"></ul> </nav> </div> </div> </div> <div class=initial-content > <div id=main  role=main > <div class="sidebar sticky"> <div itemscope itemtype="https://schema.org/Person"> <!-- <div class=author__avatar > <img src="/gnuplot-examples/assets/minimal-mistakes/zenobia.png" alt="Septimia Zenobia" itemprop=image > </div> --> <!-- <div class=author__content > <h3 class=author__name  itemprop=name >Lazaro Alonso</h3> <p class=author__bio  itemprop=description >Probably not a commoner.</p> </div> --> <div class=author__urls-wrapper > <button class="btn btn--inverse">Follow</button> <ul class="author__urls social-icons"> <!-- <li itemprop=homeLocation  itemscope itemtype="https://schema.org/Place"> <i class="fas fa-fw fa-map-marker-alt" aria-hidden=true ></i> <span itemprop=name >Tierra</span> --> <li><a href="https://twitter.com/LazarusAlon" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> <a class=up-arrow  href="" data-toggle=tooltip  title="TO TOP"> <i class="fa fa-angle-double-up" style="font-size:36px;color:black" ></i> </a> </ul> </div> </div> </div> <div class=franklin-content > <div class=franklin-toc ><ol><li><a href="#basic_plot_from_data">Basic plot from data</a><li><a href="#3d_from_a_function_wire_and_surface_plots">3D from a function, wire and surface plots</a><li><a href="#countour_plot">Countour plot</a><li><a href="#lorenz_attractor">Lorenz attractor</a><li><a href="#heat_map">Heat map</a><li><a href="#tubes">Tubes</a><li><a href="#spheres">Spheres</a><li><a href="#torus">Torus</a></ol></div> </p> <h2 id=basic_plot_from_data ><a href="#basic_plot_from_data">Basic plot from data</a></h2> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
 x, y = [<span class=hljs-number >0</span>,<span class=hljs-number >1</span>,<span class=hljs-number >2</span>], [<span class=hljs-number >0</span>,<span class=hljs-number >1</span>,<span class=hljs-number >2</span>]
 Z = [<span class=hljs-number >10</span> <span class=hljs-number >10</span> <span class=hljs-number >10</span>; <span class=hljs-number >10</span> <span class=hljs-number >3</span> <span class=hljs-number >10</span>; <span class=hljs-number >10</span> <span class=hljs-number >2</span> <span class=hljs-number >10</span>]
-<span class=hljs-meta >@gsp</span> x y Z <span class=hljs-string >"w l lc 'red'"</span></code></pre> <img src="/gnuplot-examples/assets/menu2/code/plt3d_ex1.png" alt=""> <p>More options <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
+<span class=hljs-meta >@gsp</span> x y Z <span class=hljs-string >"w l lc 'red'"</span> <span class=hljs-string >"set view equal xyz"</span></code></pre> <img src="/gnuplot-examples/assets/menu2/code/plt3d_ex1.png" alt=""> <p>More options <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
 <span class=hljs-meta >@gsp</span> <span class=hljs-string >"unset key"</span> <span class=hljs-string >"set multi layout 2,2 title 'Multiplot title'"</span> :-
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-number >1</span> x y Z <span class=hljs-string >"w linespoints pt 4 ps 2"</span> <span class=hljs-string >"set view 55, 65"</span> :-
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-number >2</span> x y Z <span class=hljs-string >"w points pt 3 ps 3"</span> <span class=hljs-string >"set view 55, 65"</span> :-
@@ -60,7 +60,7 @@ x = [(<span class=hljs-number >1</span>-<span class=hljs-number >0.1</span>*cos(
 y = [(<span class=hljs-number >1</span>-<span class=hljs-number >0.1</span>*cos(v))*sin(u) <span class=hljs-keyword >for</span> u <span class=hljs-keyword >in</span> U, v <span class=hljs-keyword >in</span> V]
 z = [<span class=hljs-number >0.1</span>*(sin(v) + u/<span class=hljs-number >1.7</span> - <span class=hljs-number >10</span>) <span class=hljs-keyword >for</span> u <span class=hljs-keyword >in</span> U, v <span class=hljs-keyword >in</span> V]
 <span class=hljs-meta >@gsp</span> <span class=hljs-string >"set pm3d depthorder"</span> :-
-<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill transparent solid 0.7"</span>
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill transparent solid 0.7"</span> <span class=hljs-string >"set view equal xyz"</span>
 <span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"w pm3d notit"</span> <span class=hljs-string >"set xyplane -0.05"</span> palette(:ice)</code></pre> <img src="/gnuplot-examples/assets/menu2/code/tubes2.png" alt=""> <h2 id=spheres ><a href="#spheres">Spheres</a></h2> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
 Θ = LinRange(<span class=hljs-number >0</span>, <span class=hljs-number >2</span><span class=hljs-literal >π</span>, <span class=hljs-number >100</span>) <span class=hljs-comment ># 50</span>
 Φ = LinRange(<span class=hljs-number >0</span>, <span class=hljs-literal >π</span>, <span class=hljs-number >20</span>)
@@ -69,7 +69,7 @@ x = [r * cos(θ) * sin(ϕ)      <span class=hljs-keyword >for</span> θ <span cl
 y = [r * sin(θ) * sin(ϕ)      <span class=hljs-keyword >for</span> θ <span class=hljs-keyword >in</span> Θ, ϕ <span class=hljs-keyword >in</span> Φ]
 z = [r * cos(ϕ) <span class=hljs-keyword >for</span> θ <span class=hljs-keyword >in</span> Θ, ϕ <span class=hljs-keyword >in</span> Φ]
 <span class=hljs-meta >@gsp</span> <span class=hljs-string >"set pm3d depthorder"</span> :-
-<span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"w l"</span></code></pre> <img src="/gnuplot-examples/assets/menu2/code/sphere1.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
+<span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"w l"</span> <span class=hljs-string >"set view equal xyz"</span></code></pre> <img src="/gnuplot-examples/assets/menu2/code/sphere1.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
 Θ = LinRange(<span class=hljs-number >0</span>, <span class=hljs-number >2</span><span class=hljs-literal >π</span>, <span class=hljs-number >100</span>) <span class=hljs-comment ># 50</span>
 Φ = LinRange(<span class=hljs-number >0</span>, <span class=hljs-literal >π</span>, <span class=hljs-number >20</span>)
 r = <span class=hljs-number >0.8</span>
@@ -77,7 +77,7 @@ x = [r * cos(θ) * sin(ϕ)      <span class=hljs-keyword >for</span> θ <span cl
 y = [r * sin(θ) * sin(ϕ)      <span class=hljs-keyword >for</span> θ <span class=hljs-keyword >in</span> Θ, ϕ <span class=hljs-keyword >in</span> Φ]
 z = [r * cos(ϕ) <span class=hljs-keyword >for</span> θ <span class=hljs-keyword >in</span> Θ, ϕ <span class=hljs-keyword >in</span> Φ]
 <span class=hljs-meta >@gsp</span> <span class=hljs-string >"set pm3d depthorder"</span> :-
-<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill transparent solid 0.5"</span>
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill transparent solid 0.5"</span> <span class=hljs-string >"set view equal xyz"</span>
 <span class=hljs-meta >@gsp</span> :-  x y z <span class=hljs-string >"w pm3d notit"</span> <span class=hljs-string >"set xyplane 0"</span> palette(:viridis)</code></pre> <img src="/gnuplot-examples/assets/menu2/code/sphere2.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
 Θ = LinRange(<span class=hljs-number >0</span>, <span class=hljs-number >2</span><span class=hljs-literal >π</span>, <span class=hljs-number >100</span>) <span class=hljs-comment ># 50</span>
 Φ = LinRange(<span class=hljs-number >0</span>, <span class=hljs-literal >π</span>, <span class=hljs-number >100</span>)
@@ -86,7 +86,7 @@ x = [r * cos(θ) * sin(ϕ) <span class=hljs-keyword >for</span> θ <span class=h
 y = [r * sin(θ) * sin(ϕ) <span class=hljs-keyword >for</span> θ <span class=hljs-keyword >in</span> Θ, ϕ <span class=hljs-keyword >in</span> Φ]
 z = [r * cos(ϕ) <span class=hljs-keyword >for</span> θ <span class=hljs-keyword >in</span> Θ, ϕ <span class=hljs-keyword >in</span> Φ]
 <span class=hljs-meta >@gsp</span> <span class=hljs-string >"set pm3d depthorder"</span> :-
-<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill solid 1.0 noborder"</span>
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill solid 1.0 noborder"</span> <span class=hljs-string >"set view equal xyz"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set pm3d lighting primary 0.5 specular 0.6"</span>
 <span class=hljs-meta >@gsp</span> :-  x y z <span class=hljs-string >"w pm3d notit"</span> <span class=hljs-string >"set xyplane 0"</span> palette(:viridis)</code></pre> <img src="/gnuplot-examples/assets/menu2/code/sphere3.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
 Θ = LinRange(<span class=hljs-number >0</span>, <span class=hljs-number >2</span><span class=hljs-literal >π</span>, <span class=hljs-number >100</span>) <span class=hljs-comment ># 50</span>
@@ -97,7 +97,7 @@ y = [r * sin(θ) * sin(ϕ) <span class=hljs-keyword >for</span> θ <span class=h
 z = [r * cos(ϕ) <span class=hljs-keyword >for</span> θ <span class=hljs-keyword >in</span> Θ, ϕ <span class=hljs-keyword >in</span> Φ]
 
 <span class=hljs-meta >@gsp</span> <span class=hljs-string >"set pm3d depthorder"</span> :-
-<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill solid 1.0 noborder"</span>
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill solid 1.0 noborder"</span> <span class=hljs-string >"set view equal xyz"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set format ''"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set pm3d lighting primary 0.5 specular 0.6"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"unset key"</span> <span class=hljs-string >"set multi layout 2,2 title 'Lighting colors'"</span> :-
@@ -136,7 +136,7 @@ bgcolor = bgcp1*bgcp2
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill solid 1.0"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set pm3d lighting primary 0.35 specular 0.2"</span>
 <span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"w pm3d notit"</span> palette(:Wistia) <span class=hljs-string >"set view 108,2"</span>
-<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"unset border"</span> <span class=hljs-string >"set xyplane 0"</span>
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"unset border"</span> <span class=hljs-string >"set xyplane 0"</span> <span class=hljs-string >"set view equal xyz"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"unset tics"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"unset colorbox"</span>
 <span class=hljs-meta >@gsp</span> :- bgcolor</code></pre> <img src="/gnuplot-examples/assets/menu2/code/torus2.png" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
@@ -150,7 +150,7 @@ x = [<span class=hljs-number >1</span> + cos(u) + r * cos(u) * cos(v)  <span cla
 y = [r * sin(v)                        <span class=hljs-keyword >for</span> u <span class=hljs-keyword >in</span> U, v <span class=hljs-keyword >in</span> V]
 z = [sin(u) + r * sin(u) * cos(v)      <span class=hljs-keyword >for</span> u <span class=hljs-keyword >in</span> U, v <span class=hljs-keyword >in</span> V]
 <span class=hljs-meta >@gsp</span> <span class=hljs-string >"set pm3d depthorder"</span>
-<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill transparent solid 0.5"</span> 
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set style fill transparent solid 0.5"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"set pm3d lighting primary 0.05 specular 0.2"</span>
 <span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"w l palette notit"</span> palette(:dense) <span class=hljs-string >"set view 108,2"</span>
 <span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"unset border"</span> <span class=hljs-string >"set xyplane 0"</span>
