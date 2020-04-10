@@ -20,11 +20,8 @@ tempo = sol.t
 # animation
 @gsp :- "i=2"
 @gsp :- x y z tempo "every ::1::i w l notit lc palette" :-
-frame = 2
-for i in 2:40:length(x)
-  global frame
-  @gsp :- frame "i=$i" "replot" :-
-  frame += 1
+for frame in 2:40:length(x)
+  @gsp :- frame "i=$frame" "replot" :-
 end
 @gsp # display animation
 save(term="gif animate size 1000,800 delay 1", output="lorenzAnim.gif")
