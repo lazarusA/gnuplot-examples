@@ -101,7 +101,24 @@ cmap = get(colorschemes[:matter], LinRange(<span class=hljs-number >0</span>,<sp
     <span class=hljs-keyword >end</span>
 <span class=hljs-keyword >end</span>
 <span class=hljs-meta >@gp</span>
-save(term=<span class=hljs-string >"pngcairo size 1200,400"</span>, output=<span class=hljs-string >"bannerGlow.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu3/code/bannerGlow.png" alt=""> <h2 id=animations ><a href="#animations">Animations </a></h2> Lorenz attractor animation <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, LinearAlgebra
+save(term=<span class=hljs-string >"pngcairo size 1200,400"</span>, output=<span class=hljs-string >"bannerGlow.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu3/code/bannerGlow.png" alt=""> <h2 id=animations ><a href="#animations">Animations </a></h2> A basic animation can be coded as follows <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
+x = <span class=hljs-number >0</span>:<span class=hljs-number >0.01</span>:<span class=hljs-number >2</span><span class=hljs-literal >π</span>
+<span class=hljs-meta >@gp</span> xlab = <span class=hljs-string >"x"</span> ylab = <span class=hljs-string >"sin"</span>
+<span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >50</span>
+    <span class=hljs-meta >@gp</span> :- i x sin.(x .+ i / <span class=hljs-number >10.0</span>) <span class=hljs-string >"w l lc 'black' notit"</span>
+<span class=hljs-keyword >end</span>
+save(term=<span class=hljs-string >"gif animate size 600,400 delay 1"</span>, output=<span class=hljs-string >"basicAnim.gif"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu3/code/basicAnim.gif" alt=""> <p>If you want to save an animation with a better quality this can be done as follows: <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
+x = <span class=hljs-number >0</span>:<span class=hljs-number >0.01</span>:<span class=hljs-number >2</span><span class=hljs-literal >π</span>
+files = <span class=hljs-built_in >Vector</span>{<span class=hljs-built_in >String</span>}()
+<span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >50</span>
+    <span class=hljs-meta >@gp</span> xlab = <span class=hljs-string >"x"</span> ylab = <span class=hljs-string >"sin"</span>  x sin.(x .+ i / <span class=hljs-number >10.0</span>) <span class=hljs-string >"w l lc 'black' notit"</span>
+    save(term=<span class=hljs-string >"pngcairo size 600,400"</span>, output=<span class=hljs-string >"advancedAnim<span class=hljs-subst >$(i)</span>.png"</span>)
+    push!(files, <span class=hljs-string >"advancedAnim<span class=hljs-subst >$(i)</span>.png"</span>)
+<span class=hljs-keyword >end</span>
+run(<span class=hljs-string >`convert -limit memory 1 -limit map 1 <span class=hljs-variable >$files</span> advancedAnim.gif`</span>)
+run(<span class=hljs-string >`rm -f <span class=hljs-variable >$files</span>`</span>)
+
+<span class=hljs-comment ># https://github.com/gcalderone/Gnuplot.jl/issues/9</span></code></pre> <img src="/gnuplot-examples/assets/menu3/code/advancedAnim.gif" alt=""> <p>A more efficient way to do an animation is shown with the Lorenz attractor <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, LinearAlgebra
 <span class=hljs-keyword >using</span> ParameterizedFunctions, DifferentialEquations
 g = <span class=hljs-meta >@ode_def</span> <span class=hljs-keyword >begin</span>
   dx = σ*(y - x)
@@ -127,4 +144,39 @@ tempo = sol.t
   <span class=hljs-meta >@gsp</span> :- frame <span class=hljs-string >"i=<span class=hljs-variable >$frame</span>"</span> <span class=hljs-string >"replot"</span> :-
 <span class=hljs-keyword >end</span>
 <span class=hljs-meta >@gsp</span> <span class=hljs-comment ># display animation</span>
-save(term=<span class=hljs-string >"gif animate size 1000,800 delay 1"</span>, output=<span class=hljs-string >"lorenzAnim.gif"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu3/code/lorenzAnim.gif" alt=""> <div class=page-foot > <div class=copyright > &copy; Lazaro Alonso. Last modified: April 10, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>. </div> </div> </div> </div> </div> <div class=page__footer > <footer> <div class=page__footer-follow > <ul class=social-icons > <!-- <li><strong>Follow:</strong> <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> --> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> <a class=up-arrow  href="" data-toggle=tooltip  title="TO TOP"> <i class="fa fa-angle-double-up" style="font-size:36px;color:black" ></i> </a> </ul> </div> <div class=page__footer-copyright >&copy; Lazaro Alonso. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel=nofollow >Minimal Mistakes</a>. </div> </footer> </div> <script src="/gnuplot-examples/libs/minimal-mistakes/main.min.js"></script> <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>
+save(term=<span class=hljs-string >"gif animate size 1000,800 delay 1"</span>, output=<span class=hljs-string >"lorenzAnim.gif"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu3/code/lorenzAnim.gif" alt=""> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot
+<span class=hljs-comment ># archimedean spiral</span>
+a, m, z₀ = <span class=hljs-number >1</span>, <span class=hljs-number >2.1</span>, <span class=hljs-number >0</span>
+<span class=hljs-literal >φ</span> = LinRange(<span class=hljs-number >0</span>,<span class=hljs-number >20</span><span class=hljs-literal >π</span>,<span class=hljs-number >500</span>)
+r = a*<span class=hljs-literal >φ</span>
+x, y, z = r .* cos.(<span class=hljs-literal >φ</span>), r .* sin.(<span class=hljs-literal >φ</span>), m .* r .+ z₀
+<span class=hljs-keyword >function</span> theme(bgcolor = <span class=hljs-string >"#212946"</span>; borderc =<span class=hljs-string >"white"</span>,
+        ticsc = <span class=hljs-string >"white"</span>, ylabc = <span class=hljs-string >"white"</span>, gridst = <span class=hljs-number >4</span>,
+        xlabc = <span class=hljs-string >"white"</span>, gridc = <span class=hljs-string >"#2A3459"</span>, labc = <span class=hljs-string >"white"</span>)
+    bgcp1 = <span class=hljs-string >"set object rectangle from screen 0,0 to screen 1,1"</span>
+    bgcp2 = <span class=hljs-string >" behind fc '<span class=hljs-subst >$(bgcolor)</span>' fs solid noborder"</span>
+    bgcolor = bgcp1*bgcp2
+    <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"set border lw 1 lc '<span class=hljs-subst >$(borderc)</span>'"</span>
+    <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"set tics textcolor rgb '<span class=hljs-subst >$(ticsc)</span>'"</span>
+    <span class=hljs-meta >@gp</span> :- bgcolor
+    <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"set ylabel textcolor '<span class=hljs-subst >$(ylabc)</span>'"</span>
+    <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"set xlabel textcolor '<span class=hljs-subst >$(xlabc)</span>'"</span>
+    <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"set grid ls 1 lc '<span class=hljs-subst >$(gridc)</span>' dt <span class=hljs-subst >$(gridst)</span>"</span>
+    <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"set key t r textcolor '<span class=hljs-subst >$(labc)</span>'"</span>
+<span class=hljs-keyword >end</span>
+
+
+<span class=hljs-meta >@gsp</span> <span class=hljs-string >"set xyplane 0"</span> <span class=hljs-string >"set view equal xyz"</span> <span class=hljs-string >"set auto fix"</span> :-
+theme(<span class=hljs-string >"black"</span>)
+<span class=hljs-meta >@gsp</span> :- xlab = <span class=hljs-string >"x"</span> ylab = <span class=hljs-string >"y"</span>
+<span class=hljs-meta >@gsp</span> :- xr=extrema(x) yr=extrema(y) zr=extrema(z)
+<span class=hljs-meta >@gsp</span> :- <span class=hljs-string >"i=2"</span>
+<span class=hljs-comment ># line and point</span>
+<span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"every ::1::i w l notit lc palette"</span> palette(:Wistia)
+<span class=hljs-meta >@gsp</span> :- x y z <span class=hljs-string >"every ::i::i w points notit lc 'red'"</span>
+<span class=hljs-meta >@gsp</span> :- x y <span class=hljs-number >0</span>*z z <span class=hljs-string >"every ::1::i w l notit lc palette lt 2"</span>
+<span class=hljs-comment ># animation</span>
+<span class=hljs-keyword >for</span> frame <span class=hljs-keyword >in</span> <span class=hljs-number >2</span>:<span class=hljs-number >5</span>:length(x)
+  <span class=hljs-meta >@gsp</span> :- frame <span class=hljs-string >"i=<span class=hljs-variable >$frame</span>"</span> <span class=hljs-string >"replot"</span> :-
+<span class=hljs-keyword >end</span>
+<span class=hljs-meta >@gsp</span> <span class=hljs-comment ># show animation</span></code></pre> <img src="/gnuplot-examples/assets/menu3/code/archimedean.gif" alt=""> <div class=page-foot > <div class=copyright > &copy; Lazaro Alonso. Last modified: April 11, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>. </div> </div> </div> </div> </div> <div class=page__footer > <footer> <div class=page__footer-follow > <ul class=social-icons > <!-- <li><strong>Follow:</strong> <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i> Twitter</a> --> <li><a href="https://github.com/gcalderone/Gnuplot.jl" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i> GitHub</a> <a class=up-arrow  href="" data-toggle=tooltip  title="TO TOP"> <i class="fa fa-angle-double-up" style="font-size:36px;color:black" ></i> </a> </ul> </div> <div class=page__footer-copyright >&copy; Lazaro Alonso. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel=nofollow >Minimal Mistakes</a>. </div> </footer> </div> <script src="/gnuplot-examples/libs/minimal-mistakes/main.min.js"></script> <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>

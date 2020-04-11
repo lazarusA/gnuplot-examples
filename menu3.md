@@ -19,7 +19,17 @@ The code for Interlocking Tori works with the latest dev version of Gnuplot.
 \input{julia}{/assets/menu3/bannerGlow.jl}
 \fig{bannerGlow}
 ## Animations 
-Lorenz attractor animation
+A basic animation can be coded as follows 
+\input{julia}{/assets/menu3/basicAnim.jl}
+\fig{basicAnim}
+
+If you want to save an animation with a better quality this can be done as follows:
+\input{julia}{/assets/menu3/advancedAnim.jl}
+\fig{advancedAnim}
+
+A more efficient way to do an animation is shown with the Lorenz attractor
 \input{julia}{/assets/menu3/lorenzAnim.jl}
 \fig{lorenzAnim}
 
+\input{julia}{/assets/menu3/archimedean.jl}
+\fig{archimedean}

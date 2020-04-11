@@ -20,6 +20,8 @@
     
     <a href="/assets/images/cscripts/ribbon.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/ribbon.png"></a>
     
+    <a href="/assets/images/cscripts/mixlines.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/mixlines.png"></a>
+    
     <a href="/assets/images/cscripts/vlines.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/vlines.png"></a>
     
     <a href="/assets/images/cscripts/hlines.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/hlines.png"></a>
