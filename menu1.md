@@ -185,3 +185,26 @@ Three different ways two plot histograms.
 # Candlesticks
 - financial data: date open low high close
 - whisker plot: x box_min whisker_min whisker_high box_high
+
+# Categorical data
+Although the use of recipes (probably coming soon...) for this kind of data analysis is highly used, it's not hard to do it without them. Plus, you can control everything. 
+## Iris data set
+\input{julia}{/assets/menu1/iris.jl}
+\fig{Categorical_iris}
+## cars
+\input{julia}{/assets/menu1/cars.jl}
+\fig{Categorical_cars}
+## gapminder
+\input{julia}{/assets/menu1/gapminder2.jl}
+\fig{gapminder2}
+
+## flights
+The following options are also possible in the previuos examples. 
+\input{julia}{/assets/menu1/flightspoints.jl}
+\fig{flights_points}
+
+\input{julia}{/assets/menu1/flightslines.jl}
+\fig{flights_lines}
+
+\input{julia}{/assets/menu1/flights.jl}
+\fig{flights_ptslines}

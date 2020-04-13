@@ -39,6 +39,12 @@ See the feature section for the animation.
 A heat map from data or a matrix can be easily plotted as
 \input{julia}{/assets/menu2/ex3d_5.jl}
 \fig{plt3d_ex5}
+### Example 1
+\input{julia}{/assets/menu2/heatmap1.jl}
+\fig{heatmap1}
+### Example 2
+\input{julia}{/assets/menu2/heatmap2.jl}
+\fig{heatmap2}
 
 or real data with a custom colormap
 
