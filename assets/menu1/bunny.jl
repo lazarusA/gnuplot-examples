@@ -21,8 +21,7 @@ tmp = Vector{String}()
 for i in 1:length(triface)
     polytri = verpts[triface[i],:]
     x, y = polytri[:,1], polytri[:,2] # polytri[:,3]
-    push!(tmp, join(string.(x) .* " ".* string.(y) .* " " .*
-                  string(length(x)), "\n") * "\n")
+    push!(tmp, join(string.(x) .* " ".* string.(y), "\n") * "\n")
 end
 
 @gp "set size ratio -1" :-
