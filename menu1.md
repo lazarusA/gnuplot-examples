@@ -104,6 +104,15 @@ Filling between lines, two examples in one plot. The first entry is the common `
 \input{julia}{/assets/menu1/ex15.jl}
 \fig{plt_ex15}
 
+## Bunny
+Please go to this [post](https://matplotlib.org/matplotblog/posts/custom-3d-engine/) for a longer explanation. The following code is based on that post. 
+\input{julia}{/assets/menu1/bunny.jl}
+\fig{bunnyLines}
+
+Now, in color
+\input{julia}{/assets/menu1/bunnyColor.jl}
+\fig{bunnyColor}
+
 # Histograms 
 Three different ways two plot histograms. 
 \input{julia}{/assets/menu1/ex16.jl}

@@ -29,6 +29,11 @@ And with few more options we can get a countour plot.
 \input{julia}{/assets/menu2/ex3d_4.jl}
 \fig{plt3d_ex4}
 
+### egg 
+An egg shape
+\input{julia}{/assets/menu2/egg.jl}
+\fig{egg}
+
 ## Lorenz attractor
 \input{julia}{/assets/menu2/lorenz.jl}
 \fig{lorenz}
