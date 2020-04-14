@@ -90,7 +90,8 @@ So, what's happening here?. Well, basically we have `x` and `y` coordinates, her
 \input{julia}{/assets/menu1/ex12.jl}
 \fig{plt_ex12}
 
-## Filled curves 
+# Filled curves 
+## Fill under
 \input{julia}{/assets/menu1/ex13.jl}
 \fig{plt_ex13}
 
@@ -98,7 +99,7 @@ With different transparencies
 
 \input{julia}{/assets/menu1/ex14.jl}
 \fig{plt_ex14}
-
+## Fill between
 Filling between lines, two examples in one plot. The first entry is the common `x` variable, the second argument is the first curve and the third the second curve
 
 \input{julia}{/assets/menu1/ex15.jl}

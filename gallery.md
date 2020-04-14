@@ -28,9 +28,9 @@
     
     <a href="/assets/menu1/ex16.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/histograms.png"></a>
     
-    <a href="/menu2/#example_1" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/menu2/code/heatmap1.png"></a>
+    <a href="/menu2/#continuous" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/menu2/code/heatmap1.png"></a>
     
-    <a href="/menu2/#example_2" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/menu2/code/heatmap2.png"></a>
+    <a href="/menu2/#discrete" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/menu2/code/heatmap2.png"></a>
     
     <a href="/assets/menu2/ex3d_6.jl" data-toggle="tooltip" data-placement="bottom" title="Get Code"><img class = "one" src="/assets/images/heatmap.png"></a>
   
