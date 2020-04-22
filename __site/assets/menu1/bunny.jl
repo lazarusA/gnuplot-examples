@@ -27,4 +27,4 @@ end
 @gp "set size ratio -1" :-
 @gp :- tmp "w l notit lc 'black' lw 0.2"
 @gp :- "unset xtics; unset ytics; unset border"
-Gnuplot.save(term = "pngcairo size 800,600", output = "bunnyLines.png")
+save(term = "pngcairo size 800,600", output = "bunnyLines.png")

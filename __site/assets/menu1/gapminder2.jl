@@ -1,7 +1,7 @@
 using CSV, Gnuplot, DataFrames, ColorSchemes
 # https://vega.github.io/vega-lite/examples/circle_bubble_health_income.html
 #https://vega.github.io/vega-datasets/
-#link = "https://vega.github.io/vega-datasets/data/gapminder-health-income.cvs" # hide
+#link = "https://vega.github.io/vega-datasets/data/gapminder-health-income.cvs"
 # load file
 data = CSV.read("gapminder-health-income.csv")
 # selecting and plotting

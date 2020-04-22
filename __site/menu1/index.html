@@ -176,7 +176,7 @@ tmp = <span class=hljs-built_in >Vector</span>{<span class=hljs-built_in >String
 <span class=hljs-meta >@gp</span> <span class=hljs-string >"set size ratio -1"</span> :-
 <span class=hljs-meta >@gp</span> :- tmp <span class=hljs-string >"w l notit lc 'black' lw 0.2"</span>
 <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"unset xtics; unset ytics; unset border"</span>
-Gnuplot.save(term = <span class=hljs-string >"pngcairo size 800,600"</span>, output = <span class=hljs-string >"bunnyLines.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/bunnyLines.png" alt=""> <p>Now, in color <pre><code class="julia hljs"><span class=hljs-keyword >using</span> FileIO, Gnuplot, ColorSchemes
+save(term = <span class=hljs-string >"pngcairo size 800,600"</span>, output = <span class=hljs-string >"bunnyLines.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/bunnyLines.png" alt=""> <p>Now, in color <pre><code class="julia hljs"><span class=hljs-keyword >using</span> FileIO, Gnuplot, ColorSchemes
 <span class=hljs-keyword >using</span> GeometryBasics, LinearAlgebra, Statistics
 <span class=hljs-comment ># based on https://matplotlib.org/matplotblog/posts/custom-3d-engine/</span>
 <span class=hljs-comment ># download this file</span>
@@ -257,7 +257,7 @@ bunnyC = <span class=hljs-built_in >Vector</span>{<span class=hljs-built_in >Str
 <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"set size ratio -1"</span> :-
 <span class=hljs-meta >@gp</span> :- bunnyC <span class=hljs-string >"w filledcurves notit lc pal"</span> palette(:spring)
 <span class=hljs-meta >@gp</span> :- <span class=hljs-string >"unset colorbox; unset xtics; unset ytics; unset border"</span>
-Gnuplot.save(term = <span class=hljs-string >"pngcairo size 800,600"</span>, output = <span class=hljs-string >"bunnyColor.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/bunnyColor.png" alt=""> <h1 id=histograms ><a href="#histograms">Histograms </a></h1> Three different ways two plot histograms. <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions, StatsBase, LinearAlgebra, Random
+save(term = <span class=hljs-string >"pngcairo size 800,600"</span>, output = <span class=hljs-string >"bunnyColor.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/bunnyColor.png" alt=""> <h1 id=histograms ><a href="#histograms">Histograms </a></h1> Three different ways two plot histograms. <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions, StatsBase, LinearAlgebra, Random
 Random.seed!(<span class=hljs-number >123</span>)
 <span class=hljs-keyword >function</span> histVals(μ,σ; npts=<span class=hljs-number >1000</span>, izq = -<span class=hljs-number >8</span>, der = <span class=hljs-number >6</span>, paso = <span class=hljs-number >0.15</span>)
     dist = rand(Normal(μ,σ), npts)
@@ -434,6 +434,7 @@ categ = unique(byCat)
 save(term =<span class=hljs-string >"pngcairo size 600,400"</span>, output =<span class=hljs-string >"Categorical_cars.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/Categorical_cars.png" alt=""> <h2 id=gapminder ><a href="#gapminder">gapminder</a></h2> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> CSV, Gnuplot, DataFrames, ColorSchemes
 <span class=hljs-comment ># https://vega.github.io/vega-lite/examples/circle_bubble_health_income.html</span>
 <span class=hljs-comment >#https://vega.github.io/vega-datasets/</span>
+<span class=hljs-comment >#link = "https://vega.github.io/vega-datasets/data/gapminder-health-income.cvs"</span>
 <span class=hljs-comment ># load file</span>
 data = CSV.read(<span class=hljs-string >"gapminder-health-income.csv"</span>)
 <span class=hljs-comment ># selecting and plotting</span>

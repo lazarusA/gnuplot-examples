@@ -79,4 +79,4 @@ end
 @gp :- "set size ratio -1" :-
 @gp :- bunnyC "w filledcurves notit lc pal" palette(:spring)
 @gp :- "unset colorbox; unset xtics; unset ytics; unset border"
-Gnuplot.save(term = "pngcairo size 800,600", output = "bunnyColor.png")
+save(term = "pngcairo size 800,600", output = "bunnyColor.png")
