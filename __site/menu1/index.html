@@ -279,14 +279,12 @@ Random.seed!(<span class=hljs-number >123</span>)
 x = randn(<span class=hljs-number >1000</span>)
 h = hist(x, bs = <span class=hljs-number >0.1</span>)
 c = <span class=hljs-string >"#1E90FF"</span>
-<span class=hljs-meta >@gp</span> h.bins h.counts <span class=hljs-string >"with steps tit '' lc '<span class=hljs-subst >$(c)</span>' lw 2"</span> <span class=hljs-string >"set grid"</span>
-save(term=<span class=hljs-string >"pngcairo size 600,400"</span>, output = <span class=hljs-string >"stepPlot.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/stepPlot.png" alt=""> <h1 id=filled_step ><a href="#filled_step">Filled step </a></h1> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+<span class=hljs-meta >@gp</span> h.bins h.counts <span class=hljs-string >"with steps tit '' lc '<span class=hljs-subst >$(c)</span>' lw 2"</span> <span class=hljs-string >"set grid"</span></code></pre> <img src="/gnuplot-examples/assets/menu1/code/stepPlot.png" alt=""> <h1 id=filled_step ><a href="#filled_step">Filled step </a></h1> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
 x = randn(<span class=hljs-number >1000</span>)
 h = hist(x, bs = <span class=hljs-number >0.1</span>)
 c = <span class=hljs-string >"#1E90FF"</span>
 <span class=hljs-meta >@gp</span> h.bins h.counts <span class=hljs-string >"with fillsteps tit 'data' lc '<span class=hljs-subst >$(c)</span>' fs solid 0.3 noborder"</span>
-<span class=hljs-meta >@gp</span> :- h.bins h.counts <span class=hljs-string >"with steps tit '' lc '<span class=hljs-subst >$(c)</span>' lw 2"</span> <span class=hljs-string >"set grid"</span>
-save(term=<span class=hljs-string >"pngcairo size 600,400"</span>, output = <span class=hljs-string >"FilledStep.png"</span>)</code></pre> <img src="/gnuplot-examples/assets/menu1/code/filledStep.png" alt=""> <h1 id=plot_errors_box_plots_error_bars ><a href="#plot_errors_box_plots_error_bars">Plot errors, box plots, error bars</a></h1> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
+<span class=hljs-meta >@gp</span> :- h.bins h.counts <span class=hljs-string >"with steps tit '' lc '<span class=hljs-subst >$(c)</span>' lw 2"</span> <span class=hljs-string >"set grid"</span></code></pre> <img src="/gnuplot-examples/assets/menu1/code/FilledStep.png" alt=""> <h1 id=plot_errors_box_plots_error_bars ><a href="#plot_errors_box_plots_error_bars">Plot errors, box plots, error bars</a></h1> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Gnuplot, Random
 Random.seed!(<span class=hljs-number >145</span>)
 x, y, yerr = <span class=hljs-number >1</span>:<span class=hljs-number >2</span>:<span class=hljs-number >20</span>, <span class=hljs-number >5</span>*rand(<span class=hljs-number >10</span>), <span class=hljs-number >0.4</span>*abs.(randn(<span class=hljs-number >10</span>))
 <span class=hljs-meta >@gp</span> x y yerr <span class=hljs-string >"w boxerrorbars t 'test' lc 'black'"</span>

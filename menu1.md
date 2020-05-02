@@ -128,7 +128,7 @@ Three different ways two plot histograms.
 \fig{stepPlot}
 # Filled step 
 \input{julia}{/assets/menu1/filledStep.jl}
-\fig{filledStep}
+\fig{FilledStep}
 # Plot errors, box plots, error bars
 \input{julia}{/assets/menu1/ex17.jl}
 \fig{plt_errs1}
