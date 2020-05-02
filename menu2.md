@@ -39,6 +39,9 @@ An egg shape
 \fig{lorenz}
 
 See the feature section for the animation. 
+## Countour and 3d
+\input{julia}{/assets/menu2/contour_mix3D.jl}
+\fig{countour_mix3d}
 
 ## Heat map
 A heat map from data or a matrix can be easily plotted as

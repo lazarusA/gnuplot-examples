@@ -50,6 +50,11 @@ Note how easy is to incorporate normal `Julia` code, i.e. `Strings` into `Gnuplo
 \input{julia}{/assets/menu1/ex6_1.jl}
 \fig{plt2_ex6dot1}
 
+## Line styles and markers
+\input{julia}{/assets/menu1/lineSmarkers.jl}
+\fig{lineSmarkers}
+
+
 ## Black background, and colormaps
 For a more cumbersome example, consider the following with a `black` background and colors from `ColorSchemes`. 
 
@@ -118,7 +123,12 @@ Now, in color
 Three different ways two plot histograms. 
 \input{julia}{/assets/menu1/ex16.jl}
 \fig{plt_ex16}
-
+# Step plot
+\input{julia}{/assets/menu1/stepPlot.jl}
+\fig{stepPlot}
+# Filled step 
+\input{julia}{/assets/menu1/filledStep.jl}
+\fig{filledStep}
 # Plot errors, box plots, error bars
 \input{julia}{/assets/menu1/ex17.jl}
 \fig{plt_errs1}
