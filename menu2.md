@@ -60,6 +60,17 @@ or real data with a custom colormap
 
 \fig{plt3d_ex6}
 
+## Colorbar labels
+\input{julia}{/assets/menu2/colorbar_labels_single.jl}
+
+\fig{colorbar_labels_single}
+
+and a multiplot layout
+
+\input{julia}{/assets/menu2/colorbar_labels_layout.jl}
+
+\fig{colorbar_labels}
+
 ## Tubes
 
 \input{julia}{/assets/menu2/tubes1.jl}
