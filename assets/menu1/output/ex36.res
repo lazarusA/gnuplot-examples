@@ -1,1 +1,0 @@
-"burbuja1.png"

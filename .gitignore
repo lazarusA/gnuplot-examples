@@ -1,0 +1,7 @@
+Manifest.toml
+generated
+build
+.vscode
+
+docs/docs
+docs/site

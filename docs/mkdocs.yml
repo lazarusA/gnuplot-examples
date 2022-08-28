@@ -1,0 +1,131 @@
+theme:
+  name: material
+  features:
+    - navigation.sections # Sections are included in the navigation on the left.
+    - toc.integrate # Table of contents is integrated on the left; does not appear separately on the right.
+    - header.autohide # header disappears as you scroll
+  palette:
+    # Light mode / dark mode
+    # We deliberately don't automatically use `media` to check a user's preferences. We default to light mode as
+    # (a) it looks more professional, and (b) is more obvious about the fact that it offers a (dark mode) toggle.
+    - scheme: default
+      primary: white
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Lato
+  icon:
+    repo: fontawesome/brands/github # GitHub logo in top right
+    logo: "material/circle-opacity" # Equinox logo in top left
+  #  favicon: "_static/icon_transparent.svg"
+  custom_dir: "_overrides" # Overriding part of the HTML
+
+  # These additions are my own custom ones, having overridden a partial.
+  twitter_name: "@lazarusAlon"
+  twitter_url: "https://twitter.com/lazarusAlon"
+  sponsor_name: "Sponsor"
+  sponsor_url: "https://github.com/sponsors/lazarusA?o=esb"
+site_name: Gnuplot examples
+site_description: Gnuplot Examples
+site_author: Lazaro Alonso
+site_url: ""
+
+repo_url: https://github.com/lazarusA/gnuplot-examples
+repo_name: gnuplot-examples
+edit_uri: "" # No edit button, as some of our pages are in /docs and some in /examples via symlink, so it's impossible for them all to be accurate
+
+strict: true # Don't allow warnings during the build process
+extra_javascript:
+  # The below three make MathJax work, see https://squidfunk.github.io/mkdocs-material/reference/mathjax/
+  - _static/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/custom.css
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: "¤" # Adds a clickable permalink to each section heading
+      toc_depth: 4
+  - pymdownx.arithmatex: # Render LaTeX via MathJax
+      generic: true
+  - pymdownx.details # Allowing hidden expandable regions denoted by ???
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences # Seems to enable syntax highlighting when used with the Material theme.
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - def_list
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - attr_list
+  - md_in_html
+plugins:
+  - search # default search plugin; needs manually re-enabling when using any other plugins
+  - autorefs # Cross-links to headings
+  - include_exclude_files:
+      exclude:
+        - "_overrides"
+#  - mknotebooks # Jupyter notebooks
+nav:
+  - "Gallery": "index.md"
+  - "Lines & Scatters":
+    - "Lines":
+        - "Single line": "examples/generated/2d/lines/line.md"
+        - "Two lines": "examples/generated/2d/lines/two_lines.md"
+        - "Line type": "examples/generated/2d/lines/line_type.md"
+        - "Line types": "examples/generated/2d/lines/line_types.md"
+        - "Line colormap": "examples/generated/2d/lines/line_cb.md"
+        - "Dates": "examples/generated/2d/lines/dates.md"
+        - "Dates break axis into 2": "examples/generated/2d/lines/dates_break2_axis.md"
+        - "Dates break axis into 3": "examples/generated/2d/lines/dates_break3_axis.md"
+
+    - "Filled":
+        - "Filled under": "examples/generated/2d/filledcu/filled.md"
+        - "Between": "examples/generated/2d/filledcu/between.md"
+        - "Glow": "examples/generated/2d/filledcu/glow.md"
+
+    - "Scatters":
+        - "Scatter": "examples/generated/2d/scatters/scatter.md"
+        - "Scatter line": "examples/generated/2d/scatters/scatter_line.md"
+        - "Scatter line markers": "examples/generated/2d/scatters/scatter_line_markers.md"
+
+  - "Heatmaps & Contours":
+    - "Heatmaps":
+        - "Heatmap": "examples/generated/2d/heatmaps/heatmap.md"
+        - "Heatmap continuous": "examples/generated/2d/heatmaps/heatmap_continuous.md"
+        - "Heatmap discrete": "examples/generated/2d/heatmaps/heatmap_discrete.md"
+        - "Heatmap cblabel": "examples/generated/2d/heatmaps/heatmap_cblabel.md"
+        - "Heatmap multiplot": "examples/generated/2d/heatmaps/heatmap_multiplot.md"
+        - "Heatmap volcano": "examples/generated/2d/heatmaps/heatmap_volcano.md"
+    - "Contours":
+        - "Contour": "examples/generated/2d/contours/contour.md"
+        - "Contour egg": "examples/generated/2d/contours/contour_egg.md"
+  - "3D plots":
+    - "Surfaces":
+        - "Sombrero": "examples/generated/3d/surfaces/sombrero.md"
+        - "Sphere": "examples/generated/3d/surfaces/sphere.md"
+        - "Torus": "examples/generated/3d/surfaces/torus.md"
+        - "Torus, depth sorting": "examples/generated/3d/surfaces/torus_depth_sorting.md"
+        - "Tube": "examples/generated/3d/surfaces/tube.md"
+    - "Lines":
+        - "Sombrero": "examples/generated/3d/wires/sombrero.md"
+        - "Sphere": "examples/generated/3d/wires/sphere.md"
+        - "Torus": "examples/generated/3d/wires/torus.md"
+        - "Tube": "examples/generated/3d/wires/tube.md"
+

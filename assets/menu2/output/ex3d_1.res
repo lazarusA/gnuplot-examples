@@ -1,1 +1,0 @@
-"plt3d_ex1.png"
