@@ -13,7 +13,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -55,9 +55,7 @@ jobs:
       - name: make md pages content
         run: julia --project=docs/ --color=yes docs/make.jl
       - name: Build with VitePress
-        run: |
-          npm run docs:build # or pnpm docs:build / yarn docs:build / bun run docs:build
-          touch docs/.vitepress/dist/.nojekyll
+        run: npm run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
