@@ -2,7 +2,7 @@
 ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-DocumenterMarkdown = "997ab1e6-3595-5248-9280-8efb232c3433"
+DocumenterVitepress = "4710194d-e776-4893-9690-8d956a29c365"
 Gnuplot = "dc211083-a33a-5b79-959f-2ff34033469d"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"

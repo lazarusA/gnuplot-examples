@@ -1,32 +1,27 @@
-using Documenter, DocumenterMarkdown
+using Documenter
 using Literate
 
 get_example_path(p) = joinpath(@__DIR__, "..", "examples", p)
-OUTPUT = joinpath(@__DIR__, "src", "examples", "generated")
+OUTPUT = joinpath(@__DIR__, "src_md_examples")
 
-flines = "lines/" .* readdir(joinpath(@__DIR__, "..", "examples", "lines"))
-ffilled = "filledcu/" .* readdir(joinpath(@__DIR__, "..", "examples", "filledcu"))
+folders = readdir(joinpath(@__DIR__, "..", "examples"))
+setdiff!(folders, [".DS_Store"])
 
-fheats = "heatmaps/" .* readdir(joinpath(@__DIR__, "..", "examples", "heatmaps"))
-fscatt = "scatters/" .* readdir(joinpath(@__DIR__, "..", "examples", "scatters"))
-fconto = "contours/" .* readdir(joinpath(@__DIR__, "..", "examples", "contours"))
-fsurfa = "surfaces/" .* readdir(joinpath(@__DIR__, "..", "examples", "surfaces"))
-fwires = "wires/" .* readdir(joinpath(@__DIR__, "..", "examples", "wires"))
-
-srcs2d = [flines..., ffilled..., fheats..., fscatt..., fconto...]
-srcs3d = [fsurfa..., fwires...]
-
-
-for (d, paths) in (("2d", srcs2d),)
-    for p in paths
-    Literate.markdown(get_example_path(p), joinpath(OUTPUT, d, dirname(p));
-            documenter=true)
+function get_files(folders)
+    srcsfiles = []
+    for f in folders
+        names = readdir(joinpath(@__DIR__, "..", "examples", f))
+        setdiff!(names, [".DS_Store"])
+        fpaths  = "$(f)/" .* names
+        srcsfiles = vcat(srcsfiles, fpaths...)
     end
+    return srcsfiles
 end
 
-for (d, paths) in (("3d", srcs3d),)
-    for p in paths
-    Literate.markdown(get_example_path(p), joinpath(OUTPUT, d, dirname(p));
-            documenter=true)
-    end
+srcsfiles = get_files(folders)
+nested_files = get_files(srcsfiles)
+
+for p in nested_files
+    Literate.markdown(get_example_path(p), joinpath(OUTPUT, dirname(p));
+        documenter=true, credit=false)
 end
