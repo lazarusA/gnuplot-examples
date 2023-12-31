@@ -5,4 +5,7 @@ build
 .DS_Store
 
 docs/docs
+docs/examples
 docs/site
+docs/.vitepress/dist
+docs/.vitepress/cache
