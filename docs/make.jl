@@ -6,5 +6,5 @@ makedocs(; sitename="gnuplot-examples", authors="Lazaro Alonso",
     checkdocs=:all,
     format=DocumenterVitepress.MarkdownVitepress(),
     draft=false,
-    source="src_md_examples", build=joinpath(@__DIR__, "examples")
+    source="../src_md_examples", build=joinpath(@__DIR__, "examples")
     )

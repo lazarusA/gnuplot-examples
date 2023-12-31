@@ -2,7 +2,7 @@ using Documenter
 using Literate
 
 get_example_path(p) = joinpath(@__DIR__, "..", "examples", p)
-OUTPUT = joinpath(@__DIR__, "src_md_examples")
+OUTPUT = joinpath(@__DIR__, "..", "src_md_examples")
 
 folders = readdir(joinpath(@__DIR__, "..", "examples"))
 setdiff!(folders, [".DS_Store"])
