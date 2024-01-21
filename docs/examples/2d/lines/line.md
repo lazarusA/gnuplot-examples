@@ -3,15 +3,26 @@
 
 ```julia
 using Gnuplot
+empty!(Gnuplot.options.init)
+push!( Gnuplot.options.init, linetypes(:Set1_5, lw=1.5, ps=1.5))
+function saveas(file; sx=550, sy=350, fs=0.8, term="svg")
+    Gnuplot.save(term="$(term) size $(sx),$(sy) fontscale $(fs)", "$(file).svg")
+end;
+```
+
+
+<a id='line'></a>
+
+## line
+
+
+```julia
+using Gnuplot
 t = 0:0.001:1
 @gp t sin.(10π*t) "w l tit 'sin' lc 'gray'"
+saveas("lines001");
 ```
 
 
-```
-"assets/lines001.svg"
-```
-
-
-![](assets/lines001.svg)
+![](lines001.svg)
 
