@@ -3,22 +3,26 @@ EditURL = "../../../examples/2d/filledcu/between.jl"
 ```
 
 ````@example between
-using Gnuplot#hide
-Gnuplot.quitall()#hide
-mkpath("assets")#hide
-Gnuplot.options.term = "unknown"#hide
-empty!(Gnuplot.options.init)#hide
-push!( Gnuplot.options.init, linetypes(:Set1_5, lw=1.5, ps=1.5))#hide
-saveas(file) = Gnuplot.save(term="svg size 550,350 fontscale 0.8", "assets/$(file).svg")#hide
-
 using Gnuplot
-let
-    x = LinRange(-10,10,200)
-    @gp x sin.(x) sin.(x) .+ 1 "with filledcu lc '#56B4E9' fs transparent solid 0.3"
-    @gp :- x cos.(x) 1 .+ cos.(x) "with filledcu lc 'red' fs transparent solid 0.5"
-    saveas("filled002") # hide
-end
+Gnuplot.quitall()#hide
+Gnuplot.options.term = "unknown"#hide
+empty!(Gnuplot.options.init)
+push!( Gnuplot.options.init, linetypes(:Set1_5, lw=1.5, ps=1.5))
+function saveas(file; sx=550, sy=350, fs=0.8, term="svg")
+    Gnuplot.save(term="$(term) size $(sx),$(sy) fontscale $(fs)", "$(file).svg")
+end;
+nothing #hide
 ````
 
-![](assets/filled002.svg)
+## Filled Between curves
+
+````@example between
+x = LinRange(-10,10,200)
+@gp x sin.(x) sin.(x) .+ 1 "with filledcu lc '#56B4E9' fs transparent solid 0.3"
+@gp :- x cos.(x) 1 .+ cos.(x) "with filledcu lc 'red' fs transparent solid 0.5"
+saveas("filled002");
+nothing #hide
+````
+
+![](filled002.svg)
 

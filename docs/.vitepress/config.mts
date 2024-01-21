@@ -58,6 +58,7 @@ export default defineConfig({
                   { text: 'line_type', link: '/examples/2d/lines/line_type' },
                   { text: 'line_types', link: '/examples/2d/lines/line_types' },
                   { text: 'line_cb', link: '/examples/2d/lines/line_cb' },
+                  { text: 'log scales', link: '/examples/2d/lines/log_scales' },
                   { text: 'dates', link: '/examples/2d/lines/dates' },
                   { text: 'dates_break2_axis', link: '/examples/2d/lines/dates_break2_axis' },
                   { text: 'dates_break3_axis', link: '/examples/2d/lines/dates_break3_axis' }
