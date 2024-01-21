@@ -557,7 +557,7 @@
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='black'  d='M482.16,292.41 L473.16,292.41  '/>	<g transform="translate(490.55,296.31)" stroke="none" fill="black" font-family="Arial" font-size="9.60"  text-anchor="start">
-		<text><tspan font-family="Arial" >10</tspan><tspan font-family="Arial"  font-size="7.7" dy="-6.00px">-2</tspan><tspan font-size="9.6" dy="6.00"></tspan></text>
+		<text><tspan font-family="Arial" > 0.01</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -566,7 +566,7 @@
 		M463.11,244.46 L467.61,244.46 M482.16,239.03 L477.66,239.03 M463.11,239.03 L467.61,239.03 M482.16,234.43 L477.66,234.43
 		M463.11,234.43 L467.61,234.43 M482.16,230.46 L477.66,230.46 M463.11,230.46 L467.61,230.46 M482.16,226.95 L477.66,226.95
 		M463.11,226.95 L467.61,226.95 M482.16,223.81 L473.16,223.81  '/>	<g transform="translate(490.55,227.71)" stroke="none" fill="black" font-family="Arial" font-size="9.60"  text-anchor="start">
-		<text><tspan font-family="Arial" >10</tspan><tspan font-family="Arial"  font-size="7.7" dy="-6.00px">-1</tspan><tspan font-size="9.6" dy="6.00"></tspan></text>
+		<text><tspan font-family="Arial" > 0.1</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -575,7 +575,7 @@
 		M463.11,175.86 L467.61,175.86 M482.16,170.43 L477.66,170.43 M463.11,170.43 L467.61,170.43 M482.16,165.84 L477.66,165.84
 		M463.11,165.84 L467.61,165.84 M482.16,161.86 L477.66,161.86 M463.11,161.86 L467.61,161.86 M482.16,158.35 L477.66,158.35
 		M463.11,158.35 L467.61,158.35 M482.16,155.21 L473.16,155.21  '/>	<g transform="translate(490.55,159.11)" stroke="none" fill="black" font-family="Arial" font-size="9.60"  text-anchor="start">
-		<text><tspan font-family="Arial" >10</tspan><tspan font-family="Arial"  font-size="7.7" dy="-6.00px">0</tspan><tspan font-size="9.6" dy="6.00"></tspan></text>
+		<text><tspan font-family="Arial" > 1</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -584,7 +584,7 @@
 		M463.11,107.26 L467.61,107.26 M482.16,101.83 L477.66,101.83 M463.11,101.83 L467.61,101.83 M482.16,97.24 L477.66,97.24
 		M463.11,97.24 L467.61,97.24 M482.16,93.26 L477.66,93.26 M463.11,93.26 L467.61,93.26 M482.16,89.75 L477.66,89.75
 		M463.11,89.75 L467.61,89.75 M482.16,86.61 L473.16,86.61  '/>	<g transform="translate(490.55,90.51)" stroke="none" fill="black" font-family="Arial" font-size="9.60"  text-anchor="start">
-		<text><tspan font-family="Arial" >10</tspan><tspan font-family="Arial"  font-size="7.7" dy="-6.00px">1</tspan><tspan font-size="9.6" dy="6.00"></tspan></text>
+		<text><tspan font-family="Arial" > 10</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -593,11 +593,11 @@
 		M463.11,38.66 L467.61,38.66 M482.16,33.23 L477.66,33.23 M463.11,33.23 L467.61,33.23 M482.16,28.64 L477.66,28.64
 		M463.11,28.64 L467.61,28.64 M482.16,24.66 L477.66,24.66 M463.11,24.66 L467.61,24.66 M482.16,21.15 L477.66,21.15
 		M463.11,21.15 L467.61,21.15 M482.16,18.01 L473.16,18.01  '/>	<g transform="translate(490.55,21.91)" stroke="none" fill="black" font-family="Arial" font-size="9.60"  text-anchor="start">
-		<text><tspan font-family="Arial" >10</tspan><tspan font-family="Arial"  font-size="7.7" dy="-6.00px">2</tspan><tspan font-size="9.6" dy="6.00"></tspan></text>
+		<text><tspan font-family="Arial" > 100</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M463.11,18.01 L472.11,18.01  '/>	<g transform="translate(532.20,155.21) rotate(270)" stroke="none" fill="black" font-family="Arial" font-size="9.60"  text-anchor="middle">
+	<path stroke='black'  d='M463.11,18.01 L472.11,18.01  '/>	<g transform="translate(540.59,155.21) rotate(270)" stroke="none" fill="black" font-family="Arial" font-size="9.60"  text-anchor="middle">
 		<text><tspan font-family="Arial" >Scientific Notation</tspan></text>
 	</g>
 </g>
